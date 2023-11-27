@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ news.title }}</h1>
+  <p>{{ news.date }}</p>
+  <p>{{ news.text }}</p>
+    {% if news.image %}
+          <img src="{{ news.image.url }}" alt="{{ news.title }}">
+        {% endif %}
+  <!-- Другие поля модели... -->
+{% endblock %}

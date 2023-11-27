@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>News List</h1>
+  {% for article in news_list %}
+    <h2><a href="{% url 'news_detail' pk=article.pk %}">{{ article.title }}</a></h2>
+    <p>{{ article.date }}</p>
+    <!-- Другие поля модели... -->
+  {% endfor %}
+{% endblock %}
