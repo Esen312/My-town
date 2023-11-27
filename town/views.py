@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Announcement
 
-# Create your views here.
+
+class AnnouncementListView(ListView):
+    template_name = 'pages/announcement.html'
+    queryset = Announcement.objects.all()
+    context_object_name = 'announcements'
