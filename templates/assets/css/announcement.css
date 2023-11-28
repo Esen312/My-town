@@ -1,0 +1,25 @@
+/* announcement.css */
+
+/* Add your custom styles for the announcement page here */
+
+/* Example styles */
+h2 {
+  color: #333;
+}
+
+div {
+  margin-bottom: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  color: #555;
+}

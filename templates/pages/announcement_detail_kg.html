@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <h3>{{ announcement.title_kg }}</h3>
+        <p>{{ announcement.date }}</p>
+        <p>{{ announcement.text_kg }}</p>
+        {% if announcement.file_kg %}
+          <a href="{{ announcement.file_kg.url }}" target="_blank">Ссылка на файл</a>
+        {% endif %}
+        {% if announcement.image %}
+          <img src="{{ announcement.image.url }}" alt="{{ announcement.title }}">
+        {% endif %}
+
+{% endblock %}

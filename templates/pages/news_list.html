@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/news_list.css' %}">
+{% endblock %}
+
+{% block content %}
+  {% for article in news_list %}
+  <div class="news-item">
+    <h3><a href="{% url 'news_detail' pk=article.pk %}">{{ article.title }}</a><span class="date">{{ article.date }}</span></h3>
+    <p>{{ article.content }}</p>
+  </div>
+{% endfor %}
+{% endblock %}

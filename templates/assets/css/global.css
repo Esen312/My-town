@@ -1,0 +1,103 @@
+/* static/css/global.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.content {
+  flex: 1;
+}
+
+.footer {
+  background-color: #333333;
+  color: #ffffff;
+  padding: 20px;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+}
+
+.footer ul li {
+  margin-bottom: 15px;
+}
+
+.footer ul li a {
+  color: #91969D;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-right: 20px;
+}
+
+.footer ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-line {
+  border-top: 1px solid #3E3E3E; /* Добавляем линию внизу */
+  margin-top: 20px; /* Расстояние между линией и ссылками на социальные сети */
+  padding-top: 20px; /* Расстояние между линией и ссылками на социальные сети */
+  margin-right: 20px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: flex-end; /* Центрируем иконки по горизонтали */
+  margin-right: 20px;
+}
+
+.social-icons a {
+  margin: 0 10px; /* Расстояние между иконками */
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.social-icons a:hover {
+  color: #cccccc; /* Изменяем цвет при наведении */
+}
+
+.social-line {
+  border-top: 1px solid #3E3E3E;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.footer-text p {
+  color: #91969D;
+  font-size: 0.9rem;
+  margin: 5px;
+}
+
+@media (min-width: 768px) {
+  /* Медиа-запрос для устройств с шириной экрана 768px и более */
+  .footer-text {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-text p {
+    text-align: left;
+  }
+
+  .footer-text-right p {
+    text-align: right;
+  }
+}
