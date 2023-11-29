@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
+<title>{% block title %}Navbar{% endblock %}</title>
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
 
-</body>
-</html>
+<body>
+    <nav>
+        <a href="#" class="logo"><img src="../../media/uploads/logo/logo.png"
+                                      alt="Логотип Токмока" width="60" height="60">
+            <strong>Официальный сайт мэрии города Токмок</strong></a>
+
+        <ul class="nav">
+            <li class="navlink">
+                <div class="search-container">
+                    <form class="search" action="{% url 'search_view' %}" method="get">
+                        <input type="text" name="q" placeholder="Поиск...">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </li>
+            <li class="navlink"><a href="/history/">История города</a></li>
+            <li class="navlink"><a href="#">Руководство мэрии</a></li>
+            <li class="navlink"><a href="/news/">Новости</a></li>
+            <li class="navlink"><a href="/contact/">Контакты</a></li>
+            <li class="navlink"><a href="/feedback/">Обратная связь</a></li>
+            <li class="navlink"><a href="#">Вакансии</a></li>
+        </ul>
+        <div class="burger">
+            <i class="fa fa-bars"></i>
+        </div>
+    </nav>
+
+{% block script %}
+    <script src="{% static 'js/header.js' %}"></script>
+{% endblock %}

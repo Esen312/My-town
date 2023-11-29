@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% load static %}
 
+<title>{% block title %}Объявления{% endblock %}</title>
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/announcement.css' %}">
+{% endblock %}
+
+{% block content %}
         <h3>{{ announcement.title }}</h3>
         <p>{{ announcement.date }}</p>
         <p>{{ announcement.text }}</p>
         {% if announcement.file %}
           <a href="{{ announcement.file.url }}" target="_blank">Ссылка на файл</a>
         {% endif %}
-        {% if announcement.image %}
-          <img src="{{ announcement.image.url }}" alt="{{ announcement.title }}">
-        {% endif %}
-
+        {% if announcement.get_photos %}
+        <div class="photo-container">
+          {% for photo in announcement.get_photos %}
+            <img src="{{ photo.image.url }}" alt="Photo">
+          {% endfor %}
+        </div>
+      {% endif %}
 {% endblock %}

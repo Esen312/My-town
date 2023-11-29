@@ -1,6 +1,7 @@
+from django.db.models import Q
 from django.http import Http404
 from django.views.generic import ListView, DetailView
-from .models import News, Contact, Announcement
+from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement
 from .form import FeedbackForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -41,11 +42,12 @@ class AnnouncementListView(ListView):
     template_name = 'pages/announcement.html'
     queryset = Announcement.objects.all()
     context_object_name = 'announcements'
+    ordering = ['-date']
 
 
 class AnnouncementDetailView(DetailView):
     model = Announcement
-    template_name = 'pages/announcement_detail_kg.html'
+    template_name = 'pages/announcement_detail.html'
     context_object_name = 'announcement'
 
     def get_object(self, queryset=None):
@@ -58,23 +60,57 @@ class AnnouncementDetailView(DetailView):
         return obj
 
 
-class AnnouncementKGListView(ListView):
-    template_name = 'pages/announcement_kg.html'
-    queryset = Announcement.objects.all()
-    context_object_name = 'announcements'
+class OfficialDocumentsListView(ListView):
+    template_name = 'pages/official_document.html'
+    queryset = OfficialDocuments.objects.all()
+    context_object_name = 'official_documents'
+    ordering = ['-date']
 
 
-class AnnouncementKGDetailView(DetailView):
-    model = Announcement
-    template_name = 'pages/announcement_detail_kg.html'
+class OfficialDocumentsDetailView(DetailView):
+    model = OfficialDocuments
+    template_name = 'pages/official_document_detail.html'
     context_object_name = 'announcement'
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
 
         # Проверяем значение поля publicize
-        if not obj.publicize_kg:
+        if not obj.publicize:
             raise Http404("Страница не найдена")
 
         return obj
 
+
+class HistoryPage(ListView):
+    model = History
+    template_name = 'pages/history.html'
+    context_object_name = 'history'
+
+
+class TownHallManagementListView(ListView):
+    template_name = 'pages/management.html'
+    queryset = TownHallManagement.objects.all()
+    context_object_name = 'managements'
+
+
+def search_view(request):
+    query = request.GET.get('q')
+
+    if query:
+        # Use '__iexact' for case-insensitive search
+        announcements = Announcement.objects.filter(
+            Q(title__iregex=rf'.*{query}.*') | Q(title_kg__iregex=rf'.*{query}.*'))
+        documents = OfficialDocuments.objects.filter(
+            Q(title__iregex=rf'.*{query}.*') | Q(title_kg__iregex=rf'.*{query}.*'))
+        news = News.objects.filter(title__iregex=rf'.*{query}.*')
+
+        context = {
+            'announcements': announcements,
+            'documents': documents,
+            'news': news,
+            'query': query,
+        }
+        return render(request, 'pages/search_results.html', context)
+
+    return render(request, 'pages/search_results.html', {'query': None})

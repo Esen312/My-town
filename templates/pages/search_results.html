@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+<head>
+    <meta charset="UTF-8">
+
+    <title>Search Results</title>
+</head>
+{% block content %}
+
+<body>
+
+    {% if query %}
+        <h3>Результаты поиска по запросу: {{ query }}</h3>
+        {% if announcements %}
+            {% for announcement in announcements %}
+                <div class="result-item">
+                    <p>{{ announcement.title }}</p>
+                    <span  class="date">{{ announcement.date }}</span>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if documents %}
+            {% for document in documents %}
+                <div class="result-item">
+                    <p>{{ document.title }}</p>
+                    <span  class="date">{{ document.date }}</span>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if news %}
+            {% for item in news %}
+                <div class="result-item">
+                    <p>{{ item.title }}</p>
+                    <span  class="date">{{ item.date }}</span>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    {% endif %}
+    {% if not query %}
+        <h3>Вы ничего не написали в поиске</h3>
+    {% endif %}
+</body>
+{% endblock %}
