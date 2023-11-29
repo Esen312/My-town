@@ -11,7 +11,7 @@
 {% block content %}
     {% for announcement in announcements %}
     <div class="announcement-item">
-        {% if announcement.publicize %}
+        {% if announcement.publicize and announcement.title%}
             <h3><a href="{% url 'announcement_detail' pk=announcement.pk %}">{{ announcement.title }}</a>
                 <span class="date">{{ announcement.date }}</span></h3>
         {% endif %}

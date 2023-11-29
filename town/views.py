@@ -100,9 +100,9 @@ def search_view(request):
     if query:
         # Use '__iexact' for case-insensitive search
         announcements = Announcement.objects.filter(
-            Q(title__iregex=rf'.*{query}.*') | Q(title_kg__iregex=rf'.*{query}.*'))
+            Q(title__iregex=rf'.*{query}.*'))
         documents = OfficialDocuments.objects.filter(
-            Q(title__iregex=rf'.*{query}.*') | Q(title_kg__iregex=rf'.*{query}.*'))
+            Q(title__iregex=rf'.*{query}.*'))
         news = News.objects.filter(title__iregex=rf'.*{query}.*')
 
         context = {

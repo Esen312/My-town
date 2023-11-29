@@ -28,7 +28,7 @@ a:hover {
 .nav {
     display: flex;
     justify-content: space-around;
-    width: 60%;
+    width: 65%;
 }
 
 .navlink {
@@ -109,4 +109,38 @@ a:hover {
 /* Иконка лупы */
 .fa-search {
     font-size: 1.2em;
+}
+
+/* styles.css */
+
+/* Стили для выпадающего списка */
+form select {
+    border: none; /* Убираем границы */
+    color: #0065d7; /* Цвет текста */
+    padding: 8px; /* Внутренний отступ */
+    border-radius: 4px; /* Закругляем углы */
+    outline: none; /* Убираем обводку при фокусе */
+    transition: background-color 0.3s; /* Плавное изменение цвета фона */
+}
+
+/* Стили при наведении */
+form select:hover {
+    color: #2c8fff;
+}
+
+/* Убираем стандартный стрелочный указатель у выпадающего списка */
+form select::-ms-expand {
+    display: none;
+}
+
+/* Убираем стрелку у выпадающего списка в некоторых браузерах */
+form select::-webkit-inner-spin-button,
+form select::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Стили для опций в выпадающем списке */
+form option {
+    color: #0065d7;
 }
