@@ -9,10 +9,12 @@
 {% endblock %}
 
 {% block content %}
+<div class="main">
   {% for article in news_list %}
   <div class="news-item">
     <h3><a href="{% url 'news_detail' pk=article.pk %}">{{ article.title }}</a><span class="date">{{ article.date }}</span></h3>
     <p>{{ article.content }}</p>
   </div>
 {% endfor %}
+    </div>
 {% endblock %}

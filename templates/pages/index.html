@@ -1,0 +1,29 @@
+<!-- templates/home.html -->
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="main-news">
+    <span class="main-news-left">Новости</span>
+    <span class="main-news-right"><a class="main-news-a" href="/news/">Все новости →</a></span>
+  </div>
+  <div id="news-container">
+    {% for news in news_list|slice:":9" %}
+      <div class="news-item">
+        <a href="{% url 'news_detail' pk=news.pk %}">
+          <img src="{{ news.image.url }}" alt="{{ news.title }}">
+        </a>
+        <p class="title"><a href="{% url 'news_detail' pk=news.pk %}">{{ news.title }}</a></p>
+        <p class="date">{{ news.date }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

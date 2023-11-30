@@ -1,9 +1,10 @@
-from .views import NewsListView, NewsDetailView, feedback, contact_view
+from .views import NewsListView, NewsDetailView, feedback, contact_view, index
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
 urlpatterns = [
+    path('', index, name='index'),
     path('news/', NewsListView.as_view(), name='news_list'),
     path('news/<int:pk>/', NewsDetailView.as_view(), name='news_detail'),
     path('feedback/', feedback, name='feedback'),

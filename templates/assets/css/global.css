@@ -39,9 +39,7 @@ body {
   margin-right: 20px;
 }
 
-.footer ul li a:hover {
-  text-decoration: underline;
-}
+
 
 .footer-line {
   border-top: 1px solid #3E3E3E; /* Добавляем линию внизу */
