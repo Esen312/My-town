@@ -3,55 +3,53 @@
 <title>{% block title %}Navbar{% endblock %}</title>
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 {% endblock %}
 
 <body>
-    <nav>
-        <a href="#" class="logo"><img src="../../media/uploads/logo/logo.png"
-                                      alt="Логотип Токмока" width="60" height="60">
-            <strong>Официальный сайт мэрии города Токмок</strong></a>
+    <header class="header">
+        <a href="#" class="logo"><img class="logo-img" src="../../media/uploads/logo/logo.png"
+                                      alt="Логотип Токмока">
+            <span class="logo-text">Официальный сайт мэрии г. Токмок</span></a>
 
-        <ul class="nav">
-            <li class="navlink">
-                <div class="search-container">
-                    <form class="search" action="{% url 'search_view' %}" method="get">
-                        <input type="text" name="q" placeholder="Поиск...">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-            </li>
+        <input type="checkbox" id="check">
+        <label for="check" class="icons">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <i class='bx bx-x' id="close-icon"></i>
+        </label>
 
-            <li class="navlink"><a href="/history/">{% trans 'История города'%}</a></li>
-            <li class="navlink"><a href="#">{% trans 'Руководство мэрии'%}</a></li>
-            <li class="navlink"><a href="/news/">{% trans 'Новости'%}</a></li>
-            <li class="navlink"><a href="/contact/">{% trans 'Контакты'%}</a></li>
-            <li class="navlink"><a href="/feedback/">{% trans 'Обратная связь'%}</a></li>
-            <li class="navlink"><a href="#">{% trans 'Вакансии'%}</a></li>
-            <li>
-                <form action="{% url 'set_language' %}" method="post">
-                    {% csrf_token %}
-                    <input name="next" type="hidden" value="{{ redirect_to }}">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
+        <nav class="navbar">
 
-                    <select name="language" onchange="this.form.submit()">
-                        {% for language in languages %}
-                            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
-                                {{ language.name_local }}
-                            </option>
-                        {% endfor %}
-                    </select>
-                </form>
-
-            </li>
-        </ul>
-        <div class="burger">
-            <i class="fa fa-bars"></i>
+    <a href="/news/" style="--i:0;">{% trans 'Новости'%}</a>
+    <a href="/feedback/" style="--i:1;">{% trans 'Обратная связь'%}</a>
+    <a href="#" style="--i:2;">{% trans 'Вакансии'%}</a>
+    <div class="dropdown" style="--i:3;">
+        <a href="#">{% trans 'Информация о городе'%}</a>
+        <div class="dropdown-content">
+            <a href="/history/">{% trans 'История города'%}</a>
+            <a href="/town_hall_managements/">{% trans 'Руководство мэрии'%}</a>
+            <a href="/contact/">{% trans 'Контакты'%}</a>
         </div>
-    </nav>
-
+    </div>
+    <div class="dropdown" style="--i:4;">
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+                <select name="language" onchange="this.form.submit()">
+                    {% for language in languages %}
+                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                            {{ language.name_local }}
+                        </option>
+                    {% endfor %}
+                </select>
+        </form>
+    </div>
+</nav>
+    </header>
+</body>
 {% block script %}
     <script src="{% static 'js/header.js' %}"></script>
 {% endblock %}

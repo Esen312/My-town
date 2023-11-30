@@ -1,0 +1,293 @@
+{#{% load static %}#}
+{#{% load i18n %}#}
+{#<title>{% block title %}Navbar{% endblock %}</title>#}
+{#{% block style %}#}
+{#    <link rel="stylesheet" href="{% static 'css/header.css' %}">#}
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
+{#{% endblock %}#}
+
+<body>
+    <nav>
+
+        <a href="#" class="logo"><img src="../../media/uploads/logo/logo.png"
+                                      alt="Логотип Токмока" width="60" height="60">
+            <strong>Официальный сайт мэрии г. Токмок</strong></a>
+
+        <ul class="nav">
+            <li class="navlink">
+                <div class="search-container">
+                    <form class="search" action="{% url 'search_view' %}" method="get">
+                        <input type="text" name="q" placeholder="Поиск...">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </li>
+            <li class="navlink dropdown">
+                <a class="dropbtn">
+                    Информация о городе
+                    <span class="fa fa-chevron-down"></span></a>
+                <div class="dropdown-content">
+                    <a href="/history/">{% trans 'История города'%}</a>
+                    <a href="#">{% trans 'Руководство мэрии'%}</a>
+                    <a href="/contact/">{% trans 'Контакты'%}</a>
+                </div>
+            </li>
+            <li class="navlink"><a href="/news/">{% trans 'Новости'%}</a></li>
+            <li class="navlink"><a href="/feedback/">{% trans 'Обратная связь'%}</a></li>
+            <li class="navlink"><a href="#">{% trans 'Вакансии'%}</a></li>
+            <li>
+                <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+
+                    <div class="custom-select">
+                    <select name="language" class="language-select" onchange="this.form.submit()">
+                        {% for language in languages %}
+                            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                {{ language.name_local }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                </form>
+
+            </li>
+        </ul>
+
+        <div class="burger">
+            <i class="fa fa-bars"></i>
+        </div>
+    </nav>
+
+{% block script %}
+    <script src="{% static 'js/header.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+
+nav {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #ffffff;
+    color: #0d6dfc;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+a {
+  text-decoration: none;
+  color: #0065d7;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+a:hover {
+    color: #2c8fff; /* Устанавливаем новый цвет текста при наведении */
+}
+.logo {
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.navlink {
+    list-style: none;
+    margin: 0.3rem;
+}
+
+.navlink a {
+    color: #0065d7;
+    text-decoration: none;
+    font-size: 1.0rem;
+}
+
+.navlink a:hover {
+    color: #2c8fff;
+
+}
+.burger {
+    font-size: 1.2em;
+    display: none;
+    z-index: 1100; /* Установите значение z-index больше, чем у элементов, которые могут перекрывать бургер-меню */
+}
+
+
+@media screen and (max-width: 880px) {
+    .burger {
+        display: block;
+
+    }
+    .nav {
+        margin: 0;
+        background: #ffffff;
+        position: absolute;
+        right: -100%;
+        top: 70px;
+        width: 50%;
+        height: calc(100% - 70px);
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 0;
+        transition: all 400ms;
+        z-index: 100;
+    }
+    .navlink {
+        text-align: center;
+    }
+
+    .nav-active {
+        right: 0;
+    }
+}
+
+
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #0065d7;
+    outline: none;
+    font-size: 1rem;
+    margin-right: 5px;
+}
+
+.search button {
+    background-color: #0065d7;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+/* Иконка лупы */
+.fa-search {
+    font-size: 1.2em;
+}
+
+/* styles.css */
+
+/* Стили для выпадающего списка */
+form select {
+    border: none; /* Убираем границы */
+    color: #0065d7; /* Цвет текста */
+    padding: 8px; /* Внутренний отступ */
+    border-radius: 4px; /* Закругляем углы */
+    outline: none; /* Убираем обводку при фокусе */
+    transition: background-color 0.3s; /* Плавное изменение цвета фона */
+}
+
+/* Стили при наведении */
+form select:hover {
+    color: #2c8fff;
+}
+
+/* Убираем стандартный стрелочный указатель у выпадающего списка */
+form select::-ms-expand {
+    display: none;
+}
+
+/* Убираем стрелку у выпадающего списка в некоторых браузерах */
+form select::-webkit-inner-spin-button,
+form select::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Стили для опций в выпадающем списке */
+form option {
+    color: #0065d7;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px; /* Add padding to the dropdown content */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropbtn {
+    padding: 10px; /* Add padding to the dropdown button */
+}
+
+.dropbtn .fa {
+    font-size: 0.8rem; /* Задайте желаемый размер в пикселях или других единицах измерения */
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Добавьте эти стили в ваш CSS файл */
+.language-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select::after {
+    content: '\f078'; /* Unicode символ для fa-chevron-down */
+    font-family: 'FontAwesome';
+    font-size: 0.8rem;
+    color: #0065d7;
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Регулируйте отступ по вашему усмотрению */
+    transform: translateY(-50%);
+    pointer-events: none; /* Чтобы иконка не перекрывала события мыши */
+}
+
+.language-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    padding-right: 30px; /* Отступ для умещения иконки */
+}

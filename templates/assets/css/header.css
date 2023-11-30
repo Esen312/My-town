@@ -1,146 +1,190 @@
-nav {
-    margin-bottom: 0.5rem;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background: #ffffff;
-    color: #0d6dfc;
-    z-index: 1000;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-a {
-  text-decoration: none;
-  color: #0065d7;
-  display: inline-block;
-  font-size: 1.2rem;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
-a:hover {
-    color: #2c8fff; /* Устанавливаем новый цвет текста при наведении */
-}
-.logo {
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-}
-
-.nav {
-    display: flex;
-    justify-content: space-around;
-    width: 65%;
-}
-
-.navlink {
-    list-style: none;
-    margin: 0.3rem;
-}
-
-.navlink a {
-    color: #0065d7;
-    text-decoration: none;
-    font-size: 1.0rem;
-}
-
-.navlink a:hover {
-    color: #2c8fff;
-
-}
-.burger {
-    font-size: 1.2em;
-    display: none;
-    z-index: 1100; /* Установите значение z-index больше, чем у элементов, которые могут перекрывать бургер-меню */
-}
-
-
-@media screen and (max-width: 880px) {
-    .burger {
-        display: block;
-
-    }
-    .nav {
-        margin: 0;
-        background: #ffffff;
-        position: absolute;
-        right: -100%;
-        top: 70px;
-        width: 50%;
-        height: calc(100% - 70px);
-        flex-direction: column;
-        justify-content: space-around;
-        padding: 0;
-        transition: all 400ms;
-        z-index: 100;
-    }
-    .navlink {
-        text-align: center;
-    }
-
-    .nav-active {
-        right: 0;
-    }
-}
-
-
-
-.search-container {
-    display: flex;
-    align-items: center;
-}
-
-.search input[type="text"] {
-    padding: 10px;
-    border: none;
-    border-bottom: 2px solid #0065d7;
-    outline: none;
-    font-size: 1rem;
-    margin-right: 5px;
-}
-
-.search button {
-    background-color: #0065d7;
-    color: #ffffff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-
-/* Иконка лупы */
-.fa-search {
-    font-size: 1.2em;
-}
-
-/* styles.css */
-
-/* Стили для выпадающего списка */
-form select {
-    border: none; /* Убираем границы */
-    color: #0065d7; /* Цвет текста */
-    padding: 8px; /* Внутренний отступ */
-    border-radius: 4px; /* Закругляем углы */
-    outline: none; /* Убираем обводку при фокусе */
-    transition: background-color 0.3s; /* Плавное изменение цвета фона */
-}
-
-/* Стили при наведении */
-form select:hover {
-    color: #2c8fff;
-}
-
-/* Убираем стандартный стрелочный указатель у выпадающего списка */
-form select::-ms-expand {
-    display: none;
-}
-
-/* Убираем стрелку у выпадающего списка в некоторых браузерах */
-form select::-webkit-inner-spin-button,
-form select::-webkit-outer-spin-button {
-    -webkit-appearance: none;
+*{
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-/* Стили для опций в выпадающем списке */
-form option {
-    color: #0065d7;
+body{
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
 }
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+    /*background: #ffffff;*/
+    /*backdrop-filter: blur(50px);*/
+    display: flex;
+    justify-content: space-between; /* элементы справа */
+    align-items: center;
+    z-index: 100;
+}
+
+.header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+
+.logo{
+    font-size: 1.3rem;
+    color: #2c8fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+.logo-img{
+    width: 4rem;
+    height: 4rem;
+}
+.navbar a {
+    font-size: 1.15rem;
+    color: #2c8fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem; /* расстояние между элементами */
+}
+
+#check {
+    display: none;
+}
+.icons{
+    position: absolute;
+    right: 5%;
+    font-size: 2.8rem;
+    color: #2c8fff;
+    cursor: pointer;
+    display: none;
+}
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    backdrop-filter: blur(50px);
+    min-width: 160px;
+    z-index: 1;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Media Query for Smaller Screens */
+@media (max-width: 939px) {
+    /* ... (existing styles) */
+
+    .navbar .dropdown-content {
+        position: static;
+        display: none;
+        background: transparent;
+        box-shadow: none;
+        transform: translateY(0);
+        opacity: 1;
+        transition: none;
+    }
+
+    #check:checked~.navbar .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    #check:checked~.navbar .dropdown-content a {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(.15s * var(--i));
+    }
+}
+/* BREAKPOINTS */
+@media (max-width: 1075px) {
+    .header{
+        padding: 1.3rem 5%;
+    }
+}
+
+@media (max-width: 939px) {
+    .logo{
+        font-size: 1.3rem;
+        color: #2c8fff;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    .logo-img{
+        width: 20%;
+        height: 20%;
+    }
+    .logo-text{
+        display: none;
+    }
+    .icons{
+        display: inline-flex;
+    }
+
+    #check:checked~.icons #menu-icon {
+        display: none;
+    }
+    .icons #close-icon{
+        display: none;
+    }
+
+    #check:checked~.icons #close-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: #ffffff;
+        backdrop-filter: blur(50px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        overflow: hidden;
+        transition: .30s ease;
+        flex-direction: column;
+    }
+
+    #check:checked~.navbar {
+        height: auto;
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 1.1rem;
+        margin: 1.5rem 0;
+        text-align: center;
+        transform: translateY(-50px);
+        opacity: 0;
+        transition: .30s ease;
+
+    }
+
+    #check:checked~.navbar a {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(.15s * var(--i));
+    }
+}
+
+
