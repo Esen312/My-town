@@ -11,7 +11,12 @@
         <a href="#" class="logo"><img class="logo-img" src="../../media/uploads/logo/logo.png"
                                       alt="Логотип Токмока">
             <span class="logo-text">Официальный сайт мэрии г. Токмок</span></a>
-
+        <div class="search-container">
+            <form class="search" action="{% url 'search_view' %}" method="get">
+                <input type="text" name="q" placeholder="{% trans 'Поиск...' %}">
+                <button type="submit" id="search-icon"><i class="bx bx-search"></i></button>
+            </form>
+        </div>
         <input type="checkbox" id="check">
         <label for="check" class="icons">
             <i class='bx bx-menu' id="menu-icon"></i>
@@ -19,35 +24,34 @@
         </label>
 
         <nav class="navbar">
-
-    <a href="/news/" style="--i:0;">{% trans 'Новости'%}</a>
-    <a href="/feedback/" style="--i:1;">{% trans 'Обратная связь'%}</a>
-    <a href="#" style="--i:2;">{% trans 'Вакансии'%}</a>
-    <div class="dropdown" style="--i:3;">
-        <a href="#">{% trans 'Информация о городе'%}</a>
-        <div class="dropdown-content">
-            <a href="/history/">{% trans 'История города'%}</a>
-            <a href="/town_hall_managements/">{% trans 'Руководство мэрии'%}</a>
-            <a href="/contact/">{% trans 'Контакты'%}</a>
-        </div>
-    </div>
-    <div class="dropdown" style="--i:4;">
-        <form action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ redirect_to }}">
-            {% get_current_language as LANGUAGE_CODE %}
-            {% get_available_languages as LANGUAGES %}
-            {% get_language_info_list for LANGUAGES as languages %}
-                <select name="language" onchange="this.form.submit()">
-                    {% for language in languages %}
-                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
-                            {{ language.name_local }}
-                        </option>
-                    {% endfor %}
-                </select>
-        </form>
-    </div>
-</nav>
+            <a href="/news/" style="--i:0;">{% trans 'Новости'%}</a>
+            <a href="/feedback/" style="--i:1;">{% trans 'Обратная связь'%}</a>
+            <a href="#" style="--i:2;">{% trans 'Вакансии'%}</a>
+            <div class="dropdown" style="--i:3;">
+                <a href="#">{% trans 'Информация о городе'%}<i class='bx bx-chevron-down'></i></a>
+                <div class="dropdown-content">
+                    <a  href="/history/">{% trans 'История города'%}</a>
+                    <a href="/town_hall_managements/">{% trans 'Руководство мэрии'%}</a>
+                    <a href="/contact/">{% trans 'Контакты'%}</a>
+                </div>
+            </div>
+        {#    <div class="dropdown" style="--i:4;">#}
+        {#        <form action="{% url 'set_language' %}" method="post">#}
+        {#            {% csrf_token %}#}
+        {#            <input name="next" type="hidden" value="{{ redirect_to }}">#}
+        {#            {% get_current_language as LANGUAGE_CODE %}#}
+        {#            {% get_available_languages as LANGUAGES %}#}
+        {#            {% get_language_info_list for LANGUAGES as languages %}#}
+        {#                <select name="language" onchange="this.form.submit()">#}
+        {#                    {% for language in languages %}#}
+        {#                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>#}
+        {#                            {{ language.name_local }}#}
+        {#                        </option>#}
+        {#                    {% endfor %}#}
+        {#                </select>#}
+        {#        </form>#}
+        {#    </div>#}
+        </nav>
     </header>
 </body>
 {% block script %}
