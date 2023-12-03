@@ -1,5 +1,5 @@
 from modeltranslation.translator import register, TranslationOptions
-from .models import Announcement, TownHallManagement, History
+from .models import Announcement, TownHallManagement, History, News
 
 
 @register(Announcement)

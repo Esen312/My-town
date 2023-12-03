@@ -19,7 +19,7 @@
         {% if announcements %}
             {% for announcement in announcements %}
                 <div class="result-item">
-                    <p>{{ announcement.title }}</p>
+                    <p><a href="{% url 'announcement_detail' pk=announcement.pk %}">{{ announcement.title }}</a></p>
                     <span  class="date">{{ announcement.date }}</span>
                 </div>
             {% endfor %}
@@ -37,8 +37,8 @@
         {% if news %}
             {% for item in news %}
                 <div class="result-item">
-                    <p>{{ item.title }}</p>
-                    <span  class="date">{{ item.date }}</span>
+                    <p><a href="{% url 'news_detail' pk=item.pk %}">{{ item.title }}</a></p>
+                    <span class="date">{{ item.date }}</span>
                 </div>
             {% endfor %}
         {% endif %}
