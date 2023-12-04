@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.announcement-item{
+    border-bottom: 1px solid lightgray; /* Линия после каждой новости */
+  padding-bottom: 1px; /* Дополнительный отступ после линии */
+}
+h3 {
+  margin-top: 20px;
+}
+
+p {
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #007BFF;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+.content {
+  margin: 0 110px;
+
+}
+.content {
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-top: 10px;
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  border-bottom: 1px solid lightgray; /* Линия после заголовка */
+  margin-top: 5px; /* Отступ между линией и заголовком */
+}
+
+.date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+
+
+@media (max-width: 768px) {
+  .content {
+    margin: 0 20px; /* Уменьшаем отступы для мобильных устройств */
+  }
+}

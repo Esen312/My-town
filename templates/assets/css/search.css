@@ -4,29 +4,25 @@ body {
 }
 
 .content {
-
-  margin: 0 300px;
+  margin: 0 110px;
 }
 .content {
   margin-bottom: 50px;
 }
 
-
-.news-title {
+h3 {
   margin-top: 20px;
-  font-weight: 500;
 }
 
 p {
   margin-top: 10px;
-}
-
-a {
   text-decoration: none;
   color: #007BFF;
   display: inline-block;
   font-size: 1.2rem;
 }
+
+
 
 .date {
   margin-left: 10px;
@@ -34,16 +30,11 @@ a {
   font-size: 0.8rem;
 }
 
-.news-item {
+.result-item {
   border-bottom: 1px solid lightgray; /* Линия после каждой новости */
   padding-bottom: 1px; /* Дополнительный отступ после линии */
 }
 
-
-.current {
-  color: red;
-  font-weight: 600;
-}
 
 @media (max-width: 768px) {
   .content {

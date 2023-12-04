@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Руководство мэрии{% endblock %}
+
+{% block style %}
+      <link rel="stylesheet" href="{% static 'css/management.css' %}">
+
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for management in managements %}
+            <li class="management">
+                <h5><strong>{{ management.position }}:</strong> {{ management.first_name }} {{ management.middle_name }} {{ management.last_name }}</h5>
+                <p><strong>Дата рождения:</strong> {{ management.birth_date }}</p>
+                <p><strong>Образование:</strong> {{ management.education|safe }}</p>
+                <p><strong>Опыт работы:</strong> {{ management.work_experience|safe }}</p>
+            <div>
+                <img class="management_photo" src="{{ management.image.url }}" alt="{{ management.first_name }} {{ management.last_name }}">
+            </div>
+            </li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
+{% load i18n %}
+<title>{% block title %}Navbar{% endblock %}</title>
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}
 
+<body>
+    <header class="header">
+        <a href="#" class="logo"><img class="logo-img" src="../../media/uploads/logo/logo.png"
+                                      alt="Логотип Токмока">
+            <span class="logo-text">Официальный сайт мэрии г. Токмок</span></a>
+        <input type="checkbox" id="check">
+        <label for="check" class="icons">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <i class='bx bx-x' id="close-icon"></i>
+        </label>
+
+        <nav class="navbar">
+            <div class="search" style="--i:0;">
+                <form action="{% url 'search_view' %}" method="get">
+                    <input type="text" name="q" placeholder=" ">
+                    <button>
+                        <i class="fa fa-search"
+                           style="font-size: 18px;">
+                        </i>
+                    </button>
+                </form>
+            </div>
+            <a href="/news/" style="--i:1;">{% trans 'Новости'%}</a>
+            <a href="/feedback/" style="--i:2;">{% trans 'Обратная связь'%}</a>
+{#            <a href="#" style="--i:2;">{% trans 'Вакансии'%}</a>#}
+            <div class="dropdown" style="--i:3;">
+                <a href="#">{% trans 'О городе'%}<i class='bx bx-chevron-down'></i></a>
+                <div class="dropdown-content">
+                    <a  href="/history/">{% trans 'История города'%}</a>
+                    <a href="/town_hall_managements/">{% trans 'Руководство мэрии'%}</a>
+                    <a href="/contact/">{% trans 'Контакты'%}</a>
+                </div>
+            </div>
+            <div class="dropdown" style="--i:4;">
+                <div class="language-selector">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <form action="{% url 'set_language' %}" method="post" class="language-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ redirect_to }}" />
+                            <input type="hidden" name="language" value="{{ language.code }}" />
+                            <button type="submit" class="language-button{% if language.code == LANGUAGE_CODE %} selected{% endif %}">
+                                {{ language.name_local }}
+                            </button>
+                        </form>
+                    {% endfor %}
+                </div>
+            </div>
+        </nav>
+    </header>
 </body>
-</html>
+{% block script %}
+    <script src="{% static 'js/header.js' %}"></script>
+{% endblock %}
+

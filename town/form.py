@@ -26,3 +26,4 @@ class FeedbackForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['attachment'].widget.attrs.update({'accept': 'application/pdf, image/*'})
 
+
