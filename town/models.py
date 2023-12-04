@@ -66,21 +66,6 @@ class NewsPhoto(models.Model):
     publication = models.ForeignKey(News, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=upload_image)
 
-    
-class News(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Название новости')
-    date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
-    text = models.TextField(verbose_name='Текст публикации', blank=True)
-    image = models.ImageField(verbose_name='Изображение',
-                              upload_to=upload_image, blank=True)
-
-    class Meta:
-        verbose_name = 'Новость'
-        verbose_name_plural = 'Новости'
-
-    def __str__(self):
-        return self.title
-
 
 class Feedback(models.Model):
     first_name = models.CharField(max_length=100, verbose_name='Имя')

@@ -1,5 +1,5 @@
-from .models import News
-from django.forms import ModelForm
+from .models import News, Photo, Announcement, NewsPhoto, HistoryPhoto, History
+from django.forms import ModelForm, inlineformset_factory
 from django import forms
 from .models import Feedback
 
@@ -26,4 +26,27 @@ class FeedbackForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['attachment'].widget.attrs.update({'accept': 'application/pdf, image/*'})
 
+
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = ['image']
+
+
+
+class NewsPhotoForm(forms.ModelForm):
+    class Meta:
+        model = NewsPhoto
+        fields = ['image']
+
+
+class HistoryPhotoForm(forms.ModelForm):
+    class Meta:
+        model = HistoryPhoto
+        fields = ['image']
+
+
+PhotoFormSet = inlineformset_factory(Announcement, Photo, form=PhotoForm, extra=1, can_delete=True)
+NewsPhotoFormSet = inlineformset_factory(News, NewsPhoto, form=NewsPhotoForm, extra=1, can_delete=True)
+HistoryPhotoFormSet = inlineformset_factory(History, HistoryPhoto, form=HistoryPhotoForm, extra=1, can_delete=True)
 

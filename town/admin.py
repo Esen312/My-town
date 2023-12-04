@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from town.form import PhotoFormSet
+from town.form import PhotoFormSet, HistoryPhotoFormSet, NewsPhotoFormSet
 from town.models import Announcement, News, Feedback, Contact, OfficialDocuments, History, TownHallManagement, Photo, \
     HistoryPhoto, NewsPhoto
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -28,7 +28,7 @@ class AnnouncementModelAdmin(TranslationAdmin):
 
 class PhotoHistoryInline(admin.TabularInline):
     model = HistoryPhoto
-    formset = PhotoFormSet
+    formset = HistoryPhotoFormSet
 
 
 class HistoryAdminForm(forms.ModelForm):
@@ -62,7 +62,7 @@ class TownHallManagementModelAdmin(TranslationAdmin):
 
 class NewsPhotoInline(admin.TabularInline):
     model = NewsPhoto
-    formset = PhotoFormSet
+    formset = NewsPhotoFormSet
 
 
 class NewsAdminForm(forms.ModelForm):

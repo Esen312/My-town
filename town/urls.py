@@ -1,6 +1,6 @@
 from .views import (NewsListView, NewsDetailView, feedback, contact_view, AnnouncementListView, AnnouncementDetailView,
                     OfficialDocumentsListView, OfficialDocumentsDetailView, HistoryPage, TownHallManagementListView,
-                    search_view)
+                    search_view, index)
 
 from django.conf import settings
 from django.conf.urls.static import static
