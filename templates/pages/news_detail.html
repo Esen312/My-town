@@ -11,7 +11,7 @@
 {% block content %}
   <p class="title">{{ news.title }}</p>
   <p class="date">{{ news.date }}</p>
-  <p class="text">{{ news.text }}</p>
+  <p class="text">{{ news.text|safe }}</p>
   {% if news.image %}
     <img src="{{ news.image.url }}" alt="{{ news.title }}">
   {% endif %}
