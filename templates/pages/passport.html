@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Паспорт{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/passport.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="">
+        <h3>{{ passport.title }}</h3>
+            <span class="">{{ passport.text|safe }}</span>
+    </div>
+{% endblock %}

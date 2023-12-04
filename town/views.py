@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.http import Http404
-from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement
+from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown
 from .form import FeedbackForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -162,4 +162,10 @@ def search_view(request):
         return render(request, 'pages/search_results.html', context)
 
     return render(request, 'pages/search_results.html', {'query': None})
+
+
+def passport_of_town(request):
+    passport = PassportOfTown.objects.get(id=1)
+    return render(request, 'pages/passport.html', {'passport': passport})
+
 

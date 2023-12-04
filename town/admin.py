@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from town.form import PhotoFormSet, HistoryPhotoFormSet, NewsPhotoFormSet
 from town.models import Announcement, News, Feedback, Contact, OfficialDocuments, History, TownHallManagement, Photo, \
-    HistoryPhoto, NewsPhoto
+    HistoryPhoto, NewsPhoto, PassportOfTown
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from modeltranslation.admin import TranslationAdmin
 
@@ -79,6 +79,19 @@ class NewsModelAdmin(TranslationAdmin):
     form = NewsAdminForm
 
 
+class PassportAdminForm(forms.ModelForm):
+    text_ru = forms.CharField(label="Текст паспорта[ru] ", widget=CKEditorUploadingWidget())
+    text_ky = forms.CharField(label="Текст паспорта[ky] ", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = PassportOfTown
+        fields = '__all__'
+
+
+class PassportModelAdmin(TranslationAdmin):
+    form = PassportAdminForm
+
+
 admin.site.register(Announcement, AnnouncementModelAdmin)
 admin.site.register(OfficialDocuments)
 admin.site.register(News, NewsModelAdmin)
@@ -86,3 +99,4 @@ admin.site.register(Feedback)
 admin.site.register(Contact)
 admin.site.register(History, HistoryModelAdmin)
 admin.site.register(TownHallManagement, TownHallManagementModelAdmin)
+admin.site.register(PassportOfTown, PassportModelAdmin)
