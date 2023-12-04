@@ -12,7 +12,7 @@ class Announcement(models.Model):
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
     text = models.TextField(verbose_name='Текст публикации', blank=True, null=True)
     file = models.FileField(verbose_name='Файл', upload_to='media/', blank=True)
-    publicize = models.BooleanField(verbose_name='Опубликовать русскую версию', default=False)
+    publicize = models.BooleanField(verbose_name='Опубликовать', default=False)
 
     def get_photos(self):
         return Photo.objects.filter(publication=self)

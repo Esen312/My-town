@@ -167,5 +167,3 @@ def search_view(request):
 def passport_of_town(request):
     passport = PassportOfTown.objects.get(id=1)
     return render(request, 'pages/passport.html', {'passport': passport})
-
-

@@ -1,8 +1,9 @@
 from .models import News, Photo, Announcement, NewsPhoto, HistoryPhoto, History, OfficialDocuments, \
-    OfficialDocumentsPhoto
+    OfficialDocumentsPhoto, TownHallManagement, PassportOfTown
 from django.forms import ModelForm, inlineformset_factory
 from django import forms
 from .models import Feedback
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class NewsForm(ModelForm):
@@ -57,3 +58,59 @@ NewsPhotoFormSet = inlineformset_factory(News, NewsPhoto, form=NewsPhotoForm, ex
 HistoryPhotoFormSet = inlineformset_factory(History, HistoryPhoto, form=HistoryPhotoForm, extra=1, can_delete=True)
 OfficialDocumentsFormSet = inlineformset_factory(OfficialDocuments, OfficialDocumentsPhoto,
                                                  form=OfficialDocumentsPhotoForm, extra=1, can_delete=True)
+
+
+class TownHallManagementAdminForm(forms.ModelForm):
+    education_ru = forms.CharField(label="Образование[ru]", widget=CKEditorUploadingWidget())
+    education_ky = forms.CharField(label="Образование[ky]", widget=CKEditorUploadingWidget())
+    work_experience_ru = forms.CharField(label="Опыт работы[ru]", widget=CKEditorUploadingWidget())
+    work_experience_ky = forms.CharField(label="Опыт работы[ky]", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = TownHallManagement
+        fields = '__all__'
+
+
+class AnnouncementAdminForm(forms.ModelForm):
+    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget())
+    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Announcement
+        fields = '__all__'
+
+
+class HistoryAdminForm(forms.ModelForm):
+    text_ru = forms.CharField(label="Текст[ru] ", widget=CKEditorUploadingWidget())
+    text_ky = forms.CharField(label="Текст[ky] ", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = History
+        fields = '__all__'
+
+
+class NewsAdminForm(forms.ModelForm):
+    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget())
+    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = News
+        fields = '__all__'
+
+
+class PassportAdminForm(forms.ModelForm):
+    text_ru = forms.CharField(label="Текст паспорта[ru] ", widget=CKEditorUploadingWidget())
+    text_ky = forms.CharField(label="Текст паспорта[ky] ", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = PassportOfTown
+        fields = '__all__'
+
+
+class OfficialDocumentsAdminForm(forms.ModelForm):
+    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget())
+    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = OfficialDocuments
+        fields = '__all__'
