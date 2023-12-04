@@ -1,4 +1,5 @@
-from .models import News, Photo, Announcement, NewsPhoto, HistoryPhoto, History
+from .models import News, Photo, Announcement, NewsPhoto, HistoryPhoto, History, OfficialDocuments, \
+    OfficialDocumentsPhoto
 from django.forms import ModelForm, inlineformset_factory
 from django import forms
 from .models import Feedback
@@ -33,7 +34,6 @@ class PhotoForm(forms.ModelForm):
         fields = ['image']
 
 
-
 class NewsPhotoForm(forms.ModelForm):
     class Meta:
         model = NewsPhoto
@@ -46,7 +46,14 @@ class HistoryPhotoForm(forms.ModelForm):
         fields = ['image']
 
 
+class OfficialDocumentsPhotoForm(forms.ModelForm):
+    class Meta:
+        model = OfficialDocumentsPhoto
+        fields = ['image']
+
+
 PhotoFormSet = inlineformset_factory(Announcement, Photo, form=PhotoForm, extra=1, can_delete=True)
 NewsPhotoFormSet = inlineformset_factory(News, NewsPhoto, form=NewsPhotoForm, extra=1, can_delete=True)
 HistoryPhotoFormSet = inlineformset_factory(History, HistoryPhoto, form=HistoryPhotoForm, extra=1, can_delete=True)
-
+OfficialDocumentsFormSet = inlineformset_factory(OfficialDocuments, OfficialDocumentsPhoto,
+                                                 form=OfficialDocumentsPhotoForm, extra=1, can_delete=True)

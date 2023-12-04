@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django import forms
-from town.form import PhotoFormSet, HistoryPhotoFormSet, NewsPhotoFormSet
+from town.form import PhotoFormSet, HistoryPhotoFormSet, NewsPhotoFormSet, OfficialDocumentsFormSet
 from town.models import Announcement, News, Feedback, Contact, OfficialDocuments, History, TownHallManagement, Photo, \
-    HistoryPhoto, NewsPhoto, PassportOfTown
+    HistoryPhoto, NewsPhoto, PassportOfTown, OfficialDocumentsPhoto
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from modeltranslation.admin import TranslationAdmin
 
@@ -92,8 +92,27 @@ class PassportModelAdmin(TranslationAdmin):
     form = PassportAdminForm
 
 
+class OfficialDocumentsPhotoInline(admin.TabularInline):
+    model = OfficialDocumentsPhoto
+    formset = OfficialDocumentsFormSet
+
+
+class OfficialDocumentsAdminForm(forms.ModelForm):
+    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget())
+    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = OfficialDocuments
+        fields = '__all__'
+
+
+class OfficialDocumentsModelAdmin(TranslationAdmin):
+    inlines = [OfficialDocumentsPhotoInline]
+    form = OfficialDocumentsAdminForm
+
+
 admin.site.register(Announcement, AnnouncementModelAdmin)
-admin.site.register(OfficialDocuments)
+admin.site.register(OfficialDocuments, OfficialDocumentsModelAdmin)
 admin.site.register(News, NewsModelAdmin)
 admin.site.register(Feedback)
 admin.site.register(Contact)

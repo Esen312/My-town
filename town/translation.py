@@ -1,10 +1,15 @@
 from modeltranslation.translator import register, TranslationOptions
-from .models import Announcement, TownHallManagement, History, News, PassportOfTown
+from .models import Announcement, TownHallManagement, History, News, PassportOfTown, OfficialDocuments
 
 
 @register(Announcement)
 class AnnouncementTranslationOptions(TranslationOptions):
-    fields = ('title', 'text')
+    fields = ('title', 'text', 'file')
+
+
+@register(OfficialDocuments)
+class OfficialDocumentsTranslationOptions(TranslationOptions):
+    fields = ('title', 'text', 'file')
 
 
 @register(History)

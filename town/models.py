@@ -11,8 +11,7 @@ class Announcement(models.Model):
     title = models.CharField(max_length=255, verbose_name='Объявления')
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
     text = models.TextField(verbose_name='Текст публикации', blank=True, null=True)
-    file = models.FileField(verbose_name='Файл[ru]', upload_to='media/', blank=True)
-    file_kg = models.FileField(verbose_name='Файл[ky]', upload_to='media/', blank=True)
+    file = models.FileField(verbose_name='Файл', upload_to='media/', blank=True)
     publicize = models.BooleanField(verbose_name='Опубликовать русскую версию', default=False)
 
     def get_photos(self):
@@ -42,13 +41,14 @@ def delete_image(sender, instance, **kwargs):
 
 
 class OfficialDocuments(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Название[ru]')
+    title = models.CharField(max_length=255, verbose_name='Название')
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
-    text = models.TextField(verbose_name='Текст', blank=True)
+    text = models.TextField(verbose_name='Текст публикации', blank=True, null=True)
     file = models.FileField(verbose_name='Файл', upload_to='media/', blank=True)
-    image = models.ImageField(verbose_name='Изображение',
-                              upload_to=upload_image, blank=True)
     publicize = models.BooleanField(verbose_name='Опубликовать', default=False)
+
+    def get_photos(self):
+        return OfficialDocumentsPhoto.objects.filter(publication=self)
 
     class Meta:
         verbose_name = 'Социальное и экономическое развитие'
@@ -56,6 +56,21 @@ class OfficialDocuments(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class OfficialDocumentsPhoto(models.Model):
+    publication = models.ForeignKey(OfficialDocuments, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=upload_image)
+
+
+# Удаление изображения из media при удалении из админ панели
+@receiver(pre_delete, sender=OfficialDocumentsPhoto)
+def delete_image(sender, instance, **kwargs):
+    # Check if the instance has an image and delete it from the directory
+    if instance.image:
+        image_path = os.path.join(MEDIA_ROOT, str(instance.image))
+        if os.path.exists(image_path):
+            os.remove(image_path)
 
 
 class News(models.Model):

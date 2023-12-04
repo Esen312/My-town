@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Социальное и экономическое развитие{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/announcement.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% for official_document in official_documents %}
+        {% if official_document.publicize %}
+            <div class="announcement-item">
+                    <h3><a href="{% url 'documents_detail' pk=official_document.pk %}">{{ official_document.title }}</a>
+                        <span class="date">{{ official_document.date }}</span></h3>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

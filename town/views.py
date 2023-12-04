@@ -109,7 +109,7 @@ class AnnouncementDetailView(DetailView):
 
 
 class OfficialDocumentsListView(ListView):
-    template_name = 'pages/official_document.html'
+    template_name = 'pages/document.html'
     queryset = OfficialDocuments.objects.all()
     context_object_name = 'official_documents'
     ordering = ['-date']
@@ -117,8 +117,8 @@ class OfficialDocumentsListView(ListView):
 
 class OfficialDocumentsDetailView(DetailView):
     model = OfficialDocuments
-    template_name = 'pages/official_document_detail.html'
-    context_object_name = 'announcement'
+    template_name = 'pages/document_detail.html'
+    context_object_name = 'official_document'
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
