@@ -51,12 +51,20 @@ class News(models.Model):
     image = models.ImageField(verbose_name='Изображение',
                               upload_to=upload_image, blank=True)
 
+    def get_photos(self):
+        return NewsPhoto.objects.filter(publication=self)
+
     class Meta:
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
 
     def __str__(self):
         return self.title
+
+
+class NewsPhoto(models.Model):
+    publication = models.ForeignKey(News, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=upload_image)
 
 
 class Feedback(models.Model):
@@ -103,14 +111,14 @@ class HistoryPhoto(models.Model):
 
 
 class TownHallManagement(models.Model):
-    first_name = models.CharField(verbose_name='Имя[ru]', max_length=50)
-    last_name = models.CharField(verbose_name='Фамилия[ru]', max_length=50)
-    middle_name = models.CharField(verbose_name='Отчество[ru]', max_length=50)
-    position = models.CharField(verbose_name='Должность[ru]', max_length=120)
+    first_name = models.CharField(verbose_name='Имя', max_length=50)
+    last_name = models.CharField(verbose_name='Фамилия', max_length=50)
+    middle_name = models.CharField(verbose_name='Отчество', max_length=50)
+    position = models.CharField(verbose_name='Должность', max_length=120)
     image = models.ImageField(verbose_name='Изображение', upload_to=upload_image)
     birth_date = models.DateField(verbose_name='Дата рождения', default=timezone.now)
-    education = models.TextField(verbose_name='Образование[ru]')
-    work_experience = models.TextField(verbose_name='Опыт работы[ru]')
+    education = models.TextField(verbose_name='Образование', blank=True, null=True)
+    work_experience = models.TextField(verbose_name='Опыт работы')
 
     class Meta:
         verbose_name = 'Руководитель мэрии'

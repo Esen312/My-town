@@ -1,0 +1,31 @@
+/* Общие стили для списка управления */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Стили для каждого элемента управления */
+.management {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/* Стили для фотографии управления */
+.management_photo {
+    width: 350px; /* Задайте нужную ширину */
+    height: 500px; /* Задайте нужную высоту */
+    border-radius: 3%; /* Чтобы сделать круглое изображение */
+    margin-right: 10px;
+    float: left; /* Чтобы текст обтекал изображение */
+}
+
+/* Стили для текста информации об управлении */
+.management p {
+    margin: 5px 0;
+}
+
+/* Дополнительные стили для информации с жирным текстом */
+.management p strong {
+    font-weight: bold;
+}

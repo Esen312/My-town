@@ -11,7 +11,6 @@
         <p>{{ announcement.date }}</p>
         <p>{{ announcement.text|safe }}</p>
         {% if announcement.file %}
-            <h2>sac</h2>
           <a href="{{ announcement.file.url }}" target="_blank">Ссылка на файл</a>
         {% endif %}
         {% if announcement.get_photos %}
