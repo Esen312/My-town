@@ -1,0 +1,12 @@
+Новый отзыв
+
+Имя: {{ feedback_instance.first_name }}
+Фамилия: {{ feedback_instance.last_name }}
+Контактный номер: {{ feedback_instance.contact_number }}
+Email: {{ feedback_instance.email }}
+Сообщение: {{ feedback_instance.message }}
+Дата: {{ feedback_instance.date }}
+
+
+
+

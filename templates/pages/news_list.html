@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/news_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  {% for article in news_list %}
+    <div class="news-item">
+      <p class="news-title"><a href="{% url 'news_detail' pk=article.pk %}">{{ article.title }}</a><span class="date">{{ article.date }}</span></p>
+      <p>{{ article.content }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  <span class="step-links">
+    {% if news_list.has_previous %}
+      <a href="?page={{ news_list.previous_page_number }}">предыдущая</a>
+    {% endif %}
+
+    {% for i in news_list.paginator.page_range %}
+      {% if news_list.number == i %}
+        <span class="current">{{ i }}</span>
+      {% elif i > news_list.number|add:"-2" and i < news_list.number|add:"2" %}
+        <a href="?page={{ i }}">{{ i }}</a>
+      {% elif i == news_list.number|add:"-2" %}
+        <a href="?page=1">1</a>
+        <span class="dots">...</span>
+      {% elif i == news_list.number|add:"2" %}
+        <span class="dots">...</span>
+        <a href="?page={{ news_list.paginator.num_pages }}">{{ news_list.paginator.num_pages }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if news_list.has_next %}
+      <a href="?page={{ news_list.next_page_number }}">следующая</a>
+    {% endif %}
+  </span>
+</div>
+
+
+
+{% endblock %}

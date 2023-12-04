@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  margin: 0 300px;
+
+}
+.content {
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-top: 10px;
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  border-bottom: 1px solid lightgray; /* Линия после заголовка */
+  margin-top: 5px; /* Отступ между линией и заголовком */
+}
+
+.date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.text {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+img {
+  max-width: 50%;
+  max-height: 50%;
+  margin-top: 20px;
+}
+

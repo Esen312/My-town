@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-
 from town.upload_image import upload_image
 
 
@@ -18,3 +17,40 @@ class Announcement(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class News(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название новости')
+    date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
+    text = models.TextField(verbose_name='Текст публикации', blank=True)
+    image = models.ImageField(verbose_name='Изображение',
+                              upload_to=upload_image, blank=True)
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+
+    def __str__(self):
+        return self.title
+
+
+class Feedback(models.Model):
+    first_name = models.CharField(max_length=100, verbose_name='Имя')
+    last_name = models.CharField(max_length=100, verbose_name='Фамилия')
+    contact_number = models.CharField(max_length=50, verbose_name='Номер телефона')
+    email = models.EmailField(max_length=50, verbose_name='Электронная почта')
+    message = models.TextField(max_length=455, verbose_name='Сообщение')
+    attachment = models.FileField(upload_to='feedback_attachments/', null=True, blank=True)
+    date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.date}"
+
+
+class Contact(models.Model):
+    number = models.CharField(max_length=50, verbose_name='Номер контакта')
+    date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
+    text = models.TextField(verbose_name='Текст публикации', blank=True)
+
+    def __str__(self):
+        return self.text
