@@ -6,7 +6,10 @@ body {
 }
 
 .content {
-  margin: 0 110px; /* Отступы справа и слева */
+  margin: 0 300px; /* Отступы справа и слева */
+}
+
+.content {
   margin-bottom: 50px; /* Отступ снизу */
 }
 
@@ -19,11 +22,11 @@ form label {
 }
 
 form input {
-  width: 45%; /* Например, 50% от ширины контейнера */
+  width: 100%; /* Например, 50% от ширины контейнера */
 }
 
 form textarea {
-  width: 50%; /* Пусть textarea занимает всю доступную ширину */
+  width: 100%; /* Пусть textarea занимает всю доступную ширину */
 }
 
 form input,
@@ -70,3 +73,4 @@ form button:hover {
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
+

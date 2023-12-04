@@ -1,15 +1,21 @@
-from django.conf import settings
-from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView
 from .models import News, Contact
 from .form import FeedbackForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
-    new_list = News.objects.all()
-    return render(request, 'pages/index.html', {'news_list': new_list})
+    # Получите все новости и отсортируйте их по дате в обратном порядке
+    news_list = News.objects.all().order_by('-date')
+
+    # Передайте отсортированный список в контекст для использования в шаблоне
+    context = {'news_list': news_list[:9]}  # Выберите первые 9 новостей
+
+    return render(request, 'pages/index.html', context)
 
 
 class NewsListView(ListView):
@@ -17,19 +23,30 @@ class NewsListView(ListView):
     template_name = 'pages/news_list.html'
     context_object_name = 'news_list'
     ordering = ['-date']
+    paginate_by = 2
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(self.object_list, self.paginate_by)
+        page = self.request.GET.get('page')
+
+        try:
+            news_list = paginator.page(page)
+        except PageNotAnInteger:
+            # Если 'page' не является целым числом, передайте первую страницу
+            news_list = paginator.page(1)
+        except EmptyPage:
+            # Если 'page' находится за пределами допустимого диапазона (e.g. 9999), передайте последнюю страницу
+            news_list = paginator.page(paginator.num_pages)
+
+        context['news_list'] = news_list
+        return context
 
 
 class NewsDetailView(DetailView):
     model = News
     template_name = 'pages/news_detail.html'
     context_object_name = 'news'
-
-
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
 
 
 def feedback(request):

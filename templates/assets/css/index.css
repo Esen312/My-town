@@ -5,16 +5,13 @@ body {
   padding: 0;
 }
 
-
-
 .content {
-  margin: 0 110px;
+  margin: 0 300px;
 }
 
 .content {
   margin-bottom: 50px;
 }
-
 
 #news-container {
   display: flex;
@@ -31,7 +28,7 @@ body {
 
 .news-item img {
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -80,18 +77,123 @@ a {
   font-size: 1.1rem;
 }
 
-@media (min-width: 768px) {
-  /* Медиа-запрос для устройств с шириной экрана 768px и более */
-  .footer-text {
-    flex-direction: row;
-    justify-content: space-between;
+
+.slider-container {
+  width: 100%;
+  margin-top: 50px;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between; /* Распределение кнопок по краям */
+
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  margin-left: 20px;
+
+}
+
+.slider-item {
+  flex: 0 0 calc(25% - 20px); /* Обновленный стиль с отступом */
+  margin-right: 20px; /* Добавлен отступ справа */
+
+}
+
+.slider-item:last-child {
+  margin-right: 0;
+}
+
+.slider-item img {
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.slider-item:hover img {
+  transform: scale(0.9);
+}
+
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  padding: 1px;
+  cursor: pointer;
+  font-size: 2.0rem;
+  color: #007BFF; /* Цвет иконок */
+  transition: font-size 0.1s ease;
+
+}
+
+.prev-btn {
+  left: 0px;
+}
+
+.next-btn {
+  right: 0px;
+}
+
+.prev-btn:hover {
+  font-size: 2.5rem;
+
+}
+
+.next-btn:hover {
+  font-size: 2.5rem;
+}
+
+
+/* Адаптация для устройств с шириной экрана меньше 768px (например, мобильные устройства) */
+@media (max-width: 768px) {
+  .content {
+    margin: 0 10px; /* Пример, можете изменить значение в зависимости от ваших предпочтений */
   }
 
-  .footer-text p {
-    text-align: left;
+  #news-container {
+    flex-direction: column;
   }
 
-  .footer-text-right p {
-    text-align: right;
+  .news-item {
+    flex: 0 1 100%; /* 100% ширины для мобильных устройств */
+    margin-right: 0;
+  }
+
+  .slider-container {
+    margin-top: 20px; /* Пример, можете изменить значение в зависимости от ваших предпочтений */
+  }
+
+  .slider-item {
+    flex: 0 0 calc(35% - 20px);
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .prev-btn,
+  .next-btn {
+    font-size: 1.5rem; /* Уменьшенный размер шрифта для мобильных устройств */
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .content {
+    margin: 0 20px; /* Уменьшение внешних отступов для планшетов */
+  }
+
+  .news-item {
+    flex: 0 1 calc(50% - 20px); /* Две колонки для новостей на планшетах */
+  }
+
+  .slider-item {
+    flex: 0 0 calc(30% - 20px); /* Две колонки для слайдов на планшетах */
   }
 }
