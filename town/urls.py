@@ -1,11 +1,13 @@
 from .views import (NewsListView, NewsDetailView, feedback, contact_view, AnnouncementListView, AnnouncementDetailView,
                     OfficialDocumentsListView, OfficialDocumentsDetailView, HistoryPage, TownHallManagementListView,
                     search_view)
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
 urlpatterns = [
+    path('', index, name='index'),
     path('news/', NewsListView.as_view(), name='news_list'),
     path('news/<int:pk>/', NewsDetailView.as_view(), name='news_detail'),
     path('feedback/', feedback, name='feedback'),
@@ -17,6 +19,7 @@ urlpatterns = [
     path('history/', HistoryPage.as_view(), name='history'),
     path('town_hall_managements/', TownHallManagementListView.as_view(), name='town_hall_management_list'),
     path('search/', search_view, name='search_view'),
+
 
 ]
 if settings.DEBUG:

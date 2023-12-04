@@ -4,14 +4,17 @@ body {
 }
 
 .content {
-  margin: 0 110px;
+
+  margin: 0 300px;
 }
 .content {
   margin-bottom: 50px;
 }
 
-h3 {
+
+.news-title {
   margin-top: 20px;
+  font-weight: 500;
 }
 
 p {
@@ -36,6 +39,11 @@ a {
   padding-bottom: 1px; /* Дополнительный отступ после линии */
 }
 
+
+.current {
+  color: red;
+  font-weight: 600;
+}
 
 @media (max-width: 768px) {
   .content {

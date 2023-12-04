@@ -6,7 +6,11 @@ body {
 }
 
 .content {
-  margin: 0 110px; /* Отступы справа и слева */
+
+  margin: 0 300px; /* Отступы справа и слева */
+}
+
+.content {
   margin-bottom: 50px; /* Отступ снизу */
 }
 
@@ -22,8 +26,10 @@ form input {
   width: 30%; /* Например, 50% от ширины контейнера */
 }
 
+
+
 form textarea {
-  width: 50%; /* Пусть textarea занимает всю доступную ширину */
+  width: 100%; /* Пусть textarea занимает всю доступную ширину */
 }
 
 form input,

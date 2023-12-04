@@ -1,0 +1,199 @@
+/* static/css/index.css */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  margin: 0 300px;
+}
+
+.content {
+  margin-bottom: 50px;
+}
+
+#news-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.news-item {
+  flex: 0 1 calc(33.333% - 10px);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.news-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.news-item:hover img {
+  transform: scale(0.9);
+}
+
+.title {
+  margin: 10px 0;
+}
+
+.main-news {
+  font-size: 1.5rem;
+  color: #1452A6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.main-news-left {
+  margin-right: auto;
+}
+
+.main-news-right {
+  margin-left: auto;
+}
+
+.main-news-right a {
+  font-size: 1.2rem;
+  color: #1452A6;
+}
+
+.date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+a {
+  text-decoration: none;
+  color: #007BFF;
+  display: inline-block;
+  font-size: 1.1rem;
+}
+
+
+.slider-container {
+  width: 100%;
+  margin-top: 50px;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between; /* Распределение кнопок по краям */
+
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  margin-left: 20px;
+
+}
+
+.slider-item {
+  flex: 0 0 calc(25% - 20px); /* Обновленный стиль с отступом */
+  margin-right: 20px; /* Добавлен отступ справа */
+
+}
+
+.slider-item:last-child {
+  margin-right: 0;
+}
+
+.slider-item img {
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.slider-item:hover img {
+  transform: scale(0.9);
+}
+
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  padding: 1px;
+  cursor: pointer;
+  font-size: 2.0rem;
+  color: #007BFF; /* Цвет иконок */
+  transition: font-size 0.1s ease;
+
+}
+
+.prev-btn {
+  left: 0px;
+}
+
+.next-btn {
+  right: 0px;
+}
+
+.prev-btn:hover {
+  font-size: 2.5rem;
+
+}
+
+.next-btn:hover {
+  font-size: 2.5rem;
+}
+
+
+/* Адаптация для устройств с шириной экрана меньше 768px (например, мобильные устройства) */
+@media (max-width: 768px) {
+  .content {
+    margin: 0 10px; /* Пример, можете изменить значение в зависимости от ваших предпочтений */
+  }
+
+  #news-container {
+    flex-direction: column;
+  }
+
+  .news-item {
+    flex: 0 1 100%; /* 100% ширины для мобильных устройств */
+    margin-right: 0;
+  }
+
+  .slider-container {
+    margin-top: 20px; /* Пример, можете изменить значение в зависимости от ваших предпочтений */
+  }
+
+  .slider-item {
+    flex: 0 0 calc(35% - 20px);
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .prev-btn,
+  .next-btn {
+    font-size: 1.5rem; /* Уменьшенный размер шрифта для мобильных устройств */
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .content {
+    margin: 0 20px; /* Уменьшение внешних отступов для планшетов */
+  }
+
+  .news-item {
+    flex: 0 1 calc(50% - 20px); /* Две колонки для новостей на планшетах */
+  }
+
+  .slider-item {
+    flex: 0 0 calc(30% - 20px); /* Две колонки для слайдов на планшетах */
+  }
+}
