@@ -8,7 +8,7 @@ from town.upload_image import upload_image
 
 
 class Announcement(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Объявления')
+    title = models.CharField(max_length=255, verbose_name='Объявления', blank=True)
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
     text = models.TextField(verbose_name='Текст публикации', blank=True, null=True)
     file = models.FileField(verbose_name='Файл', upload_to='media/', blank=True)
@@ -41,7 +41,7 @@ def delete_image(sender, instance, **kwargs):
 
 
 class OfficialDocuments(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Название')
+    title = models.CharField(max_length=255, verbose_name='Название', blank=True)
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
     text = models.TextField(verbose_name='Текст публикации', blank=True, null=True)
     file = models.FileField(verbose_name='Файл', upload_to='media/', blank=True)
@@ -74,7 +74,7 @@ def delete_image(sender, instance, **kwargs):
 
 
 class News(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Название новости')
+    title = models.CharField(max_length=255, verbose_name='Название новости', blank=True)
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
     text = models.TextField(verbose_name='Текст публикации', blank=True)
     image = models.ImageField(verbose_name='Изображение',

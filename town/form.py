@@ -61,10 +61,10 @@ OfficialDocumentsFormSet = inlineformset_factory(OfficialDocuments, OfficialDocu
 
 
 class TownHallManagementAdminForm(forms.ModelForm):
-    education_ru = forms.CharField(label="Образование[ru]", widget=CKEditorUploadingWidget())
-    education_ky = forms.CharField(label="Образование[ky]", widget=CKEditorUploadingWidget())
-    work_experience_ru = forms.CharField(label="Опыт работы[ru]", widget=CKEditorUploadingWidget())
-    work_experience_ky = forms.CharField(label="Опыт работы[ky]", widget=CKEditorUploadingWidget())
+    education_ru = forms.CharField(label="Образование[ru]", widget=CKEditorUploadingWidget(), required=False)
+    education_ky = forms.CharField(label="Образование[ky]", widget=CKEditorUploadingWidget(), required=False)
+    work_experience_ru = forms.CharField(label="Опыт работы[ru]", widget=CKEditorUploadingWidget(), required=False)
+    work_experience_ky = forms.CharField(label="Опыт работы[ky]", widget=CKEditorUploadingWidget(), required=False)
 
     class Meta:
         model = TownHallManagement
@@ -72,8 +72,8 @@ class TownHallManagementAdminForm(forms.ModelForm):
 
 
 class AnnouncementAdminForm(forms.ModelForm):
-    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget())
-    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget())
+    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget(), required=False)
+    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget(), required=False)
 
     class Meta:
         model = Announcement
@@ -81,8 +81,8 @@ class AnnouncementAdminForm(forms.ModelForm):
 
 
 class HistoryAdminForm(forms.ModelForm):
-    text_ru = forms.CharField(label="Текст[ru] ", widget=CKEditorUploadingWidget())
-    text_ky = forms.CharField(label="Текст[ky] ", widget=CKEditorUploadingWidget())
+    text_ru = forms.CharField(label="Текст[ru] ", widget=CKEditorUploadingWidget(), required=False)
+    text_ky = forms.CharField(label="Текст[ky] ", widget=CKEditorUploadingWidget(), required=False)
 
     class Meta:
         model = History
@@ -90,8 +90,8 @@ class HistoryAdminForm(forms.ModelForm):
 
 
 class NewsAdminForm(forms.ModelForm):
-    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget())
-    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget())
+    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget(), required=False)
+    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget(), required=False)
 
     class Meta:
         model = News
@@ -99,8 +99,8 @@ class NewsAdminForm(forms.ModelForm):
 
 
 class PassportAdminForm(forms.ModelForm):
-    text_ru = forms.CharField(label="Текст паспорта[ru] ", widget=CKEditorUploadingWidget())
-    text_ky = forms.CharField(label="Текст паспорта[ky] ", widget=CKEditorUploadingWidget())
+    text_ru = forms.CharField(label="Текст паспорта[ru] ", widget=CKEditorUploadingWidget(), required=False)
+    text_ky = forms.CharField(label="Текст паспорта[ky] ", widget=CKEditorUploadingWidget(), required=False)
 
     class Meta:
         model = PassportOfTown
@@ -108,8 +108,8 @@ class PassportAdminForm(forms.ModelForm):
 
 
 class OfficialDocumentsAdminForm(forms.ModelForm):
-    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget())
-    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget())
+    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget(), required=False)
+    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget(), required=False)
 
     class Meta:
         model = OfficialDocuments

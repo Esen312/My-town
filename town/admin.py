@@ -69,7 +69,6 @@ class OfficialDocumentsPhotoInline(admin.TabularInline):
 class AnnouncementAdmin(TranslationAdmin):
     list_display = ('title', 'date', 'publicize')
     search_fields = ['title']
-    readonly_fields = ('get_photos',)
     form = AnnouncementAdminForm
     inlines = [PhotoInline]
 
