@@ -16,14 +16,18 @@
   </div>
   <div id="news-container">
     {% for news in news_list %}
-  <div class="news-item">
-    <a href="{% url 'news_detail' pk=news.pk %}">
-      <img src="{{ news.image.url }}" alt="{{ news.title }}">
-    </a>
-    <p class="title"><a href="{% url 'news_detail' pk=news.pk %}">{{ news.title }}</a></p>
-    <p class="date">{{ news.date }}</p>
-  </div>
-{% endfor %}
+      <div class="news-item">
+        <a href="{% url 'news_detail' pk=news.pk %}">
+          {% if news.image %}
+            <img src="{{ news.image.url }}" alt="{{ news.title }}">
+          {% elif news.get_photos %}
+            <img src="{{ news.get_photos.first.image.url }}" alt="{{ news.title }}">
+          {% endif %}
+        </a>
+        <p class="title"><a href="{% url 'news_detail' pk=news.pk %}">{{ news.title }}</a></p>
+        <p class="date">{{ news.date }}</p>
+      </div>
+    {% endfor %}
 
   </div>
 <div class="slider-container">
