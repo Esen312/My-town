@@ -10,9 +10,11 @@
 
 {% block content %}
     {% for announcement in announcements %}
-    <div class="announcement-item">
-            <h3><a href="{% url 'announcement_detail' pk=announcement.pk %}">{{ announcement.title }}</a>
-                <span class="date">{{ announcement.date }}</span></h3>
-    </div>
+        {% if announcement.publicize %}
+            <div class="announcement-item">
+                    <h3><a href="{% url 'announcement_detail' pk=announcement.pk %}">{{ announcement.title }}</a>
+                        <span class="date">{{ announcement.date }}</span></h3>
+            </div>
+        {% endif %}
     {% endfor %}
 {% endblock %}

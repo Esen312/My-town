@@ -153,7 +153,7 @@ function toType( obj ) {
 var
 	version = "3.6.4",
 
-	// Define a locale copy of jQuery
+	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
 
 		// The jQuery object is actually just the init constructor 'enhanced'
@@ -328,7 +328,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 
 jQuery.extend( {
 
-	// Unique for each copy of jQuery on the pages
+	// Unique for each copy of jQuery on the page
 	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
 
 	// Assume jQuery is ready without the ready module
@@ -1392,7 +1392,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 			// Support: Safari 8+, iOS 8+
 			// https://bugs.webkit.org/show_bug.cgi?id=136851
-			// In-pages `selector#id sibling-combinator selector` fails
+			// In-page `selector#id sibling-combinator selector` fails
 			if ( !el.querySelectorAll( "a#" + expando + "+*" ).length ) {
 				rbuggyQSA.push( ".#.+[+~]" );
 			}
@@ -5265,7 +5265,7 @@ jQuery.event = {
 			eventHandle = elemData.handle = function( e ) {
 
 				// Discard the second event of a jQuery.event.trigger() and
-				// when an event is called after a pages has unloaded
+				// when an event is called after a page has unloaded
 				return typeof jQuery !== "undefined" && jQuery.event.triggered !== e.type ?
 					jQuery.event.dispatch.apply( elem, arguments ) : undefined;
 			};
@@ -5586,7 +5586,7 @@ jQuery.event = {
 			// Utilize native event to ensure correct state for checkable inputs
 			setup: function( data ) {
 
-				// For mutual compressibility with _default, replace `this` access with a locale var.
+				// For mutual compressibility with _default, replace `this` access with a local var.
 				// `|| data` is dead code meant only to preserve the variable through minification.
 				var el = this || data;
 
@@ -5603,7 +5603,7 @@ jQuery.event = {
 			},
 			trigger: function( data ) {
 
-				// For mutual compressibility with _default, replace `this` access with a locale var.
+				// For mutual compressibility with _default, replace `this` access with a local var.
 				// `|| data` is dead code meant only to preserve the variable through minification.
 				var el = this || data;
 
@@ -9094,7 +9094,7 @@ var
 	rantiCache = /([?&])_=[^&]*/,
 	rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg,
 
-	// trac-7653, trac-8125, trac-8152: locale protocol detection
+	// trac-7653, trac-8125, trac-8152: local protocol detection
 	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
 	rnoContent = /^(?:GET|HEAD)$/,
 	rprotocol = /^\/\//,
@@ -10437,7 +10437,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 
 
 /**
- * Load a url into a pages
+ * Load a url into a page
  */
 jQuery.fn.load = function( url, params, callback ) {
 	var selector, type, response,

@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.http import Http404
-from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement
+from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown
 from .form import FeedbackForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -109,7 +109,7 @@ class AnnouncementDetailView(DetailView):
 
 
 class OfficialDocumentsListView(ListView):
-    template_name = 'pages/official_document.html'
+    template_name = 'pages/document.html'
     queryset = OfficialDocuments.objects.all()
     context_object_name = 'official_documents'
     ordering = ['-date']
@@ -117,8 +117,8 @@ class OfficialDocumentsListView(ListView):
 
 class OfficialDocumentsDetailView(DetailView):
     model = OfficialDocuments
-    template_name = 'pages/official_document_detail.html'
-    context_object_name = 'announcement'
+    template_name = 'pages/document_detail.html'
+    context_object_name = 'official_document'
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
@@ -163,3 +163,7 @@ def search_view(request):
 
     return render(request, 'pages/search_results.html', {'query': None})
 
+
+def passport_of_town(request):
+    passport = PassportOfTown.objects.get(id=1)
+    return render(request, 'pages/passport.html', {'passport': passport})
