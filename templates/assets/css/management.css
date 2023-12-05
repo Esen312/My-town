@@ -1,31 +1,98 @@
 /* Общие стили для списка управления */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  margin: 0 300px;
+}
+
+.content {
+  margin-bottom: 50px;
+}
+
 ul {
     list-style: none;
     padding: 0;
 }
-
 /* Стили для каждого элемента управления */
 .management {
     margin-bottom: 20px;
-    border: 1px solid #ccc;
     padding: 10px;
+    position: relative; /* Добавляем позиционирование для использования псевдоэлемента */
+}
+
+/* Стили для зачеркивания после каждого элемента управления */
+.management::after {
+    content: '';
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid lightgray; /* Линия после заголовка */
+    margin-top: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* Стили для обертки контента */
+.content-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* Стили для текстового контента */
+.text-content {
+    flex: 1;
 }
 
 /* Стили для фотографии управления */
 .management_photo {
-    width: 350px; /* Задайте нужную ширину */
-    height: 500px; /* Задайте нужную высоту */
-    border-radius: 3%; /* Чтобы сделать круглое изображение */
-    margin-right: 10px;
-    float: left; /* Чтобы текст обтекал изображение */
+    max-width: 350px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    border-radius: 3%;
+    margin-left: 20px;
+    transition: transform 0.3s ease;
+}
+
+.management_photo:hover {
+    transform: scale(1.1);
 }
 
 /* Стили для текста информации об управлении */
-.management p {
+.text-content p {
     margin: 5px 0;
 }
 
 /* Дополнительные стили для информации с жирным текстом */
-.management p strong {
+.text-content p strong {
     font-weight: bold;
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+  .content {
+    margin: 0 10px;
+  }
+
+  .management {
+    padding: 10px 0;
+  }
+
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .management_photo {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .content {
+    margin: 0 20px;
+  }
 }

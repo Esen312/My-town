@@ -31,6 +31,7 @@ body {
   height: 200px;
   object-fit: cover;
   transition: transform 0.3s ease;
+  border-radius: 1%;
 }
 
 .news-item:hover img {
@@ -113,6 +114,7 @@ a {
 .slider-item img {
   width: 100%;
   transition: transform 0.3s ease;
+
 }
 
 .slider-item:hover img {

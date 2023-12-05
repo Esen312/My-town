@@ -6,9 +6,12 @@
 
 .photo-item {
   margin-bottom: 10px; /* Регулируйте интервал между фотографиями по вашему желанию */
+  transition: transform 0.3s ease;
 }
 
-
+.photo-item:hover {
+  transform: scale(0.9);
+}
 .content {
   margin: 0 300px;
 

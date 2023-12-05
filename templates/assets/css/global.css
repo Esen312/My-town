@@ -6,7 +6,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
 
+
+.container {
+  margin-left: 130px;
 }
 
 .content {
@@ -20,16 +24,19 @@ body {
   position: sticky;
   bottom: 0;
   width: 100%;
+
 }
 
 .footer ul {
   list-style: none;
   padding: 0;
   margin-top: 40px;
+
 }
 
 .footer ul li {
   margin-bottom: 15px;
+
 }
 
 .footer ul li a {
@@ -37,6 +44,7 @@ body {
   text-decoration: none;
   font-size: 1rem;
   margin-right: 20px;
+
 }
 
 
@@ -45,6 +53,7 @@ body {
   margin-top: 20px; /* Расстояние между линией и ссылками на социальные сети */
   padding-top: 20px; /* Расстояние между линией и ссылками на социальные сети */
   margin-right: 20px;
+
 }
 
 .social-icons {
@@ -83,18 +92,35 @@ body {
   margin: 5px;
 }
 
-@media (min-width: 768px) {
-  /* Медиа-запрос для устройств с шириной экрана 768px и более */
+@media (max-width: 767px) {
+  .container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .footer {
+    padding: 10px;
+  }
+
+  .footer-line,
+  .social-line {
+    margin-right: 10px;
+  }
+
+  .footer ul {
+    margin-top: 20px;
+  }
+
+  .footer-line {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  .social-icons {
+    margin-right: 10px;
+  }
+
   .footer-text {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .footer-text p {
-    text-align: left;
-  }
-
-  .footer-text-right p {
-    text-align: right;
+    margin-top: 20px;
   }
 }

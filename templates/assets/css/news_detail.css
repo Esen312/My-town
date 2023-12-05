@@ -38,3 +38,64 @@ img {
   max-height: 50%;
   margin-top: 20px;
 }
+
+/* Добавлен стиль для clearfix */
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* Обновлен стиль для .photo-item */
+.photo-item {
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 5px;
+
+}
+
+/* Обновлен стиль для изображений внутри .photo-item */
+.photo-item img {
+  max-width: 90%;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 1%;
+  transition: transform 0.3s ease;
+}
+
+.photo-item:hover img {
+  transform: scale(1.1);
+}
+
+
+@media (max-width: 768px) {
+  .content {
+    margin: 0 20px;
+    /* Пример, можете изменить значение в зависимости от ваших предпочтений */
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .date {
+    font-size: 0.7rem;
+  }
+
+  .text {
+    font-size: 0.9rem;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+
+  .photo-item {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+}
