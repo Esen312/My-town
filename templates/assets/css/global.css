@@ -97,9 +97,24 @@ th {
 
 .footer-text {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between; /* Равномерное распределение пространства между дочерними элементами */
+  align-items: center; /* Выравнивание элементов по центру по вертикали */
   margin-top: 10px;
+}
+
+.footer-text-left,
+.footer-text-right {
+  color: #91969D;
+  font-size: 0.9rem;
+  margin: 5px;
+}
+
+.footer-text-left {
+  text-align: left; /* Выравнивание текста влево */
+}
+
+.footer-text-right {
+  text-align: right; /* Выравнивание текста вправо */
 }
 
 .footer-text p {
@@ -107,6 +122,8 @@ th {
   font-size: 0.9rem;
   margin: 5px;
 }
+
+
 
 @media (max-width: 767px) {
   .container {
