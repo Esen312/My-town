@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
-{% block title %}Руководство мэрии{% endblock %}
+{% block title %}{% trans 'Руководство мэрии' %}{% endblock %}
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/management.css' %}">

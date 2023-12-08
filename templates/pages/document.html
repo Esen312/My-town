@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
-{% block title %}Социальное и экономическое развитие{% endblock %}
+{% block title %}{% trans 'Социальное и экономическое развитие' %}{% endblock %}
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/announcement.css' %}">
@@ -19,10 +20,10 @@
 </div>
 
     {% for official_document in official_documents %}
-        {% if official_document.publicize %}
+        {% if official_document.title != 'Untitled' %}
             <div class="announcement-item">
-                    <h3><a href="{% url 'documents_detail' pk=official_document.pk %}">{{ official_document.title }}</a>
-                        <span class="date">{{ official_document.date }}</span></h3>
+                <h3><a href="{% url 'documents_detail' pk=official_document.pk %}">{{ official_document.title }}</a>
+                    <span class="date">{{ official_document.date }}</span></h3>
             </div>
         {% endif %}
     {% endfor %}

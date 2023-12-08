@@ -1,7 +1,8 @@
 from django.db.models import Q
 from django.http import Http404
-from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown, Mayor
+from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown, Vacancy, Mayor
 from .form import FeedbackForm, NewsFilterForm, AnnouncementFilterForm, OfficialDocumentsFilterForm
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, TemplateView
@@ -28,6 +29,10 @@ class NewsListView(ListView):
         context = super().get_context_data(**kwargs)
         paginator = Paginator(self.object_list, self.paginate_by)
         page = self.request.GET.get('page')
+        current_language = self.request.LANGUAGE_CODE
+
+
+
 
         try:
             news_list = paginator.page(page)
@@ -39,6 +44,13 @@ class NewsListView(ListView):
             news_list = paginator.page(paginator.num_pages)
 
         context['news_list'] = news_list
+        # Если нет названия в соответствующем, тогда запись не будет возвращена на страницу.
+        for news in context['news_list']:
+            if current_language == 'ky' and not news.title_ky:
+                news.title = 'Untitled'
+            elif current_language == 'ru' and not news.title_ru:
+                news.title = 'Untitled'
+
         return context
 
     def get_queryset(self):
@@ -66,6 +78,19 @@ class NewsDetailView(DetailView):
     model = News
     template_name = 'pages/news_detail.html'
     context_object_name = 'news'
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        current_language = self.request.LANGUAGE_CODE
+
+        # Проверяем заголовок в соответствующем языке
+        if current_language == 'ky' and not obj.title_ky:
+            raise Http404("Страница не найдена")
+
+        if current_language == 'ru' and not obj.title_ru:
+            raise Http404("Страница не найдена")
+
+        return obj
 
 
 def feedback(request):
@@ -150,6 +175,19 @@ class AnnouncementListView(ListView):
         context['filter_form'] = AnnouncementFilterForm(self.request.GET)
         return context
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_language = self.request.LANGUAGE_CODE
+
+        # Если нет названия в соответствующем, тогда запись не будет возвращена на страницу.
+        for announcement in context['announcements']:
+            if current_language == 'ky' and not announcement.title_ky:
+                announcement.title = 'Untitled'
+            elif current_language == 'ru' and not announcement.title_ru:
+                announcement.title = 'Untitled'
+
+        return context
+
 
 class AnnouncementDetailView(DetailView):
     model = Announcement
@@ -158,9 +196,13 @@ class AnnouncementDetailView(DetailView):
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
+        current_language = self.request.LANGUAGE_CODE
 
-        # Проверяем значение поля publicize
-        if not obj.publicize:
+        # Проверяем заголовок в соответствующем языке
+        if current_language == 'ky' and not obj.title_ky:
+            raise Http404("Страница не найдена")
+
+        if current_language == 'ru' and not obj.title_ru:
             raise Http404("Страница не найдена")
 
         return obj
@@ -213,6 +255,19 @@ class OfficialDocumentsListView(ListView):
         context['filter_form'] = OfficialDocumentsFilterForm(self.request.GET)
         return context
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_language = self.request.LANGUAGE_CODE
+
+        # Если нет названия в соответствующем, тогда запись не будет возвращена на страницу.
+        for document in context['official_documents']:
+            if current_language == 'ky' and not document.title_ky:
+                document.title = 'Untitled'
+            elif current_language == 'ru' and not document.title_ru:
+                document.title = 'Untitled'
+
+        return context
+
 
 class OfficialDocumentsDetailView(DetailView):
     model = OfficialDocuments
@@ -221,9 +276,13 @@ class OfficialDocumentsDetailView(DetailView):
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
+        current_language = self.request.LANGUAGE_CODE
 
-        # Проверяем значение поля publicize
-        if not obj.publicize:
+        # Проверяем заголовок в соответствующем языке
+        if current_language == 'ky' and not obj.title_ky:
+            raise Http404("Страница не найдена")
+
+        if current_language == 'ru' and not obj.title_ru:
             raise Http404("Страница не найдена")
 
         return obj
@@ -268,5 +327,10 @@ def passport_of_town(request):
     return render(request, 'pages/passport.html', {'passport': passport})
 
 
+def vacancy(request):
+    vacanc = Vacancy.objects.get(id=1)
+    return render(request, 'pages/vacancy.html', {'vacancy': vacanc})
+
+  
 class MapView(TemplateView):
     template_name = 'pages/map.html'

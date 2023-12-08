@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-30 04:04+0600\n"
+"POT-Creation-Date: 2023-12-08 10:18+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\templates\components\header.html:25
-msgid "История города"
-msgstr "Шаардын тарыхы"
+#: .\templates\components\footer.html:9 .\templates\pages\index.html:6
+msgid "Главная страница"
+msgstr "Негизги бет"
 
-#: .\templates\components\header.html:26
+#: .\templates\components\footer.html:10 .\templates\components\header.html:38
+#: .\templates\pages\management.html:6
 msgid "Руководство мэрии"
-msgstr "Мэрия жетекчилиги"
+msgstr "Мэриянын жетекчилиги"
 
-#: .\templates\components\header.html:27
+#: .\templates\components\footer.html:15
+msgid "Паспорт города"
+msgstr "Шаардын паспорту"
+
+#: .\templates\components\footer.html:16 .\templates\pages\document.html:6
+#: .\templates\pages\document_detail.html:5
+msgid "Социальное и экономическое развитие"
+msgstr "Социалдык жана экономикалык өнүгүү"
+
+#: .\templates\components\footer.html:21 .\templates\components\header.html:31
+#: .\templates\pages\index.html:15 .\templates\pages\news_list.html:6
 msgid "Новости"
 msgstr "Жаңылыктар"
 
-#: .\templates\components\header.html:28
-msgid "Контакты"
-msgstr "Байланыштар"
+#: .\templates\components\footer.html:22 .\templates\pages\announcement.html:6
+msgid "Объявления"
+msgstr "Жарыялоо"
 
-#: .\templates\components\header.html:29
-msgid "Обратная связь"
-msgstr "Кайра байланыш"
-
-#: .\templates\components\header.html:30
+#: .\templates\components\footer.html:27 .\templates\components\header.html:33
+#: .\templates\pages\vacancy.html:4
 msgid "Вакансии"
-msgstr "Вакансиялар"
+msgstr "Жумуш орундары"
+
+#: .\templates\components\footer.html:28 .\templates\components\header.html:39
+#: .\templates\pages\contact.html:6 .\templates\pages\contact.html:12
+msgid "Контакты"
+msgstr "Байланыш"
+
+#: .\templates\components\footer.html:29
+msgid "Карта города"
+msgstr "Шаардын картасы"
+
+#: .\templates\components\footer.html:52
+msgid ""
+"Сайт разработан Оморов Э. и Исламов И. Поддержанием сайта занимается МП "
+"\"Мой город Токмок\""
+msgstr ""
+"Сайт иштелип чыккан Омаров э. и Исламов и. сайтты \"Мой город Токмок\" "
+"муниципалдык ишканасы колдойт"
+
+#: .\templates\components\footer.html:55
+msgid "г. Токмок, улица Ленина, 385."
+msgstr "Токмок ш., Ленин көчөсү, 385."
+
+#: .\templates\components\header.html:13
+msgid "Официальный сайт мэрии г. Токмок"
+msgstr "Токмок ш. мэрия расмий сайты"
+
+#: .\templates\components\header.html:32 .\templates\pages\feedback.html:6
+msgid "Обратная связь"
+msgstr "Байланышуу"
+
+#: .\templates\components\header.html:35
+msgid "О городе"
+msgstr "Шаар жөнүндө"
+
+#: .\templates\components\header.html:37 .\templates\pages\history.html:5
+msgid "История города"
+msgstr "Шаардын тарыхы"
+
+#: .\templates\pages\announcement_detail.html:15
+#: .\templates\pages\document_detail.html:15
+msgid "Документ"
+msgstr "Документтин түрү"
+
+#: .\templates\pages\feedback.html:27
+msgid "Отправить"
+msgstr "Жөнөтүү"
+
+#: .\templates\pages\index.html:16
+msgid "Все новости →"
+msgstr "Бардык жаңылыктар"
+
+#: .\templates\pages\passport.html:6
+msgid "Паспорт"
+msgstr "Паспорт"

@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
-{% block title %}Обратная связь{% endblock %}
+{% block title %}{% trans 'Обратная связь' %}{% endblock %}
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
@@ -23,7 +24,7 @@
 
     {{ form.as_p }}
 
-    <button type="submit">Отправить</button>
+    <button type="submit">{% trans 'Отправить' %}</button>
   </form>
     </div>
 {% endblock %}

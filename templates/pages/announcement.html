@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
-{% block title %}Объявления{% endblock %}
+{% block title %}{% trans 'Объявления' %}{% endblock %}
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/announcement.css' %}">
@@ -19,10 +20,12 @@
 </div>
 
     {% for announcement in announcements %}
-        <div class="announcement-item">
-            <h3><a href="{% url 'announcement_detail' pk=announcement.pk %}">{{ announcement.title }}</a>
-                <span class="date">{{ announcement.date }}</span></h3>
-        </div>
+        {% if announcement.title != 'Untitled' %}
+            <div class="announcement-item">
+                <h3><a href="{% url 'announcement_detail' pk=announcement.pk %}">{{ announcement.title }}</a>
+                    <span class="date">{{ announcement.date }}</span></h3>
+            </div>
+        {% endif %}
     {% endfor %}
 
     <div class="pagination">

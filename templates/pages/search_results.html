@@ -1,21 +1,19 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/search.css' %}">
 {% endblock %}
-<head>
-    <meta charset="UTF-8">
+{% block title %}{% trans Поиск %}{% endblock %}
 
-    <title>Search Results</title>
-</head>
 {% block content %}
 
 <body>
 
     {% if query %}
-        <h3>Результаты поиска по запросу: {{ query }}</h3>
+        <h3>{% trans Результаты поиска по запросу: %}{{ query }}</h3>
         {% if announcements %}
             {% for announcement in announcements %}
                 <div class="result-item">
@@ -45,7 +43,7 @@
 
     {% endif %}
     {% if not query %}
-        <h3>Вы ничего не написали в поиске</h3>
+        <h3>{% trans Вы ничего не написали в поиске %}</h3>
     {% endif %}
 </body>
 {% endblock %}

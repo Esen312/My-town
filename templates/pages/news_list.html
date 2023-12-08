@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
-{% block title %}Новости{% endblock %}
+{% block title %}{% trans 'Новости' %}{% endblock %}
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/news_list.css' %}">
@@ -20,10 +21,12 @@
 
 <div class="main">
   {% for article in news_list %}
-    <div class="news-item">
-      <p class="news-title"><a href="{% url 'news_detail' pk=article.pk %}">{{ article.title }}</a><span class="date">{{ article.date }}</span></p>
-      <p>{{ article.content }}</p>
-    </div>
+      {% if article.title != 'Untitled' %}
+        <div class="news-item">
+          <p class="news-title"><a href="{% url 'news_detail' pk=article.pk %}">{{ article.title }}</a><span class="date">{{ article.date }}</span></p>
+          <p>{{ article.content }}</p>
+        </div>
+      {% endif %}
   {% endfor %}
 </div>
 
