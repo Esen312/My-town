@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  margin: 0 300px;
+}
+
+.content {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 767px) {
+    .content {
+        margin: 0 20px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+    }
+
+    .content {
+        margin-top: 60px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+    }
+
+    .content {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 793px) {
+    .content {
+        margin: 0 20px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+    }
+
+    .content {
+        margin-top: 60px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+    }
+
+    .content {
+        margin-bottom: 30px;
+    }
+}

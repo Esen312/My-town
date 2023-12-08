@@ -1,22 +1,19 @@
 from django.db.models import Q
 from django.http import Http404
-from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown
-from .form import FeedbackForm
+from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown, Mayor
+from .form import FeedbackForm, NewsFilterForm, AnnouncementFilterForm, OfficialDocumentsFilterForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
-    # Получите все новости и отсортируйте их по дате в обратном порядке
     news_list = News.objects.all().order_by('-date')
-
-    # Передайте отсортированный список в контекст для использования в шаблоне
-    context = {'news_list': news_list[:9]}  # Выберите первые 9 новостей
-
+    mayor = Mayor.objects.first()
+    context = {'news_list': news_list[:9], 'mayor': mayor}  # Выберите первые 9 новостей
     return render(request, 'pages/index.html', context)
 
 
@@ -27,7 +24,7 @@ class NewsListView(ListView):
     ordering = ['-date']
     paginate_by = 2
 
-    def get_context_data(self, **kwargs):
+    def get_custom_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         paginator = Paginator(self.object_list, self.paginate_by)
         page = self.request.GET.get('page')
@@ -38,10 +35,30 @@ class NewsListView(ListView):
             # Если 'page' не является целым числом, передайте первую страницу
             news_list = paginator.page(1)
         except EmptyPage:
-            # Если 'page' находится за пределами допустимого диапазона (e.g. 9999), передайте последнюю страницу
+            # Если 'page' находится за пределами допустимого диапазона (например, 9999), передайте последнюю страницу
             news_list = paginator.page(paginator.num_pages)
 
         context['news_list'] = news_list
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = NewsFilterForm(self.request.GET)
+
+        if form.is_valid():
+            start_date = form.cleaned_data.get('start_date')
+            end_date = form.cleaned_data.get('end_date')
+
+            if start_date:
+                queryset = queryset.filter(date__gte=start_date)
+            if end_date:
+                queryset = queryset.filter(date__lte=end_date)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = self.get_custom_context_data(**kwargs)
+        context['filter_form'] = NewsFilterForm(self.request.GET)
         return context
 
 
@@ -88,9 +105,50 @@ def contact_view(request):
 
 class AnnouncementListView(ListView):
     template_name = 'pages/announcement.html'
-    queryset = Announcement.objects.all()
+    model = Announcement
     context_object_name = 'announcements'
     ordering = ['-date']
+    paginate_by = 2  # Количество объявлений на одной странице
+
+    def get_queryset(self):
+        return Announcement.objects.filter(publicize=True)
+
+    def get_custom_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(self.object_list, self.paginate_by)
+        page = self.request.GET.get('page')
+
+        try:
+            announcements = paginator.page(page)
+        except PageNotAnInteger:
+            # Если 'page' не является целым числом, передайте первую страницу
+            announcements = paginator.page(1)
+        except EmptyPage:
+            # Если 'page' находится за пределами допустимого диапазона, передайте последнюю страницу
+            announcements = paginator.page(paginator.num_pages)
+
+        context['announcements'] = announcements
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = AnnouncementFilterForm(self.request.GET)
+
+        if form.is_valid():
+            start_date = form.cleaned_data.get('start_date')
+            end_date = form.cleaned_data.get('end_date')
+
+            if start_date:
+                queryset = queryset.filter(date__gte=start_date)
+            if end_date:
+                queryset = queryset.filter(date__lte=end_date)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = self.get_custom_context_data(**kwargs)
+        context['filter_form'] = AnnouncementFilterForm(self.request.GET)
+        return context
 
 
 class AnnouncementDetailView(DetailView):
@@ -113,6 +171,47 @@ class OfficialDocumentsListView(ListView):
     queryset = OfficialDocuments.objects.all()
     context_object_name = 'official_documents'
     ordering = ['-date']
+    paginate_by = 2  # Количество объявлений на одной странице
+
+    def get_queryset(self):
+        return OfficialDocuments.objects.filter(publicize=True)
+
+    def get_custom_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(self.object_list, self.paginate_by)
+        page = self.request.GET.get('page')
+
+        try:
+            announcements = paginator.page(page)
+        except PageNotAnInteger:
+            # Если 'page' не является целым числом, передайте первую страницу
+            announcements = paginator.page(1)
+        except EmptyPage:
+            # Если 'page' находится за пределами допустимого диапазона, передайте последнюю страницу
+            announcements = paginator.page(paginator.num_pages)
+
+        context['document'] = announcements
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = OfficialDocumentsFilterForm(self.request.GET)
+
+        if form.is_valid():
+            start_date = form.cleaned_data.get('start_date')
+            end_date = form.cleaned_data.get('end_date')
+
+            if start_date:
+                queryset = queryset.filter(date__gte=start_date)
+            if end_date:
+                queryset = queryset.filter(date__lte=end_date)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = self.get_custom_context_data(**kwargs)
+        context['filter_form'] = OfficialDocumentsFilterForm(self.request.GET)
+        return context
 
 
 class OfficialDocumentsDetailView(DetailView):
@@ -167,3 +266,7 @@ def search_view(request):
 def passport_of_town(request):
     passport = PassportOfTown.objects.get(id=1)
     return render(request, 'pages/passport.html', {'passport': passport})
+
+
+class MapView(TemplateView):
+    template_name = 'pages/map.html'

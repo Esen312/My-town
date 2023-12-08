@@ -10,6 +10,14 @@
 
 {% block content %}
 
+<div class="filter-form">
+  <form method="get">
+    {{ filter_form.as_p }}
+    <button type="submit">Применить фильтр</button>
+      <button type="button" onclick="resetFilter()">Сбросить</button>
+  </form>
+</div>
+
 <div class="main">
   {% for article in news_list %}
     <div class="news-item">
@@ -44,7 +52,8 @@
     {% endif %}
   </span>
 </div>
+{% endblock %}
 
-
-
+{% block script %}
+ <script src="{% static 'js/form.js' %}"></script>
 {% endblock %}
