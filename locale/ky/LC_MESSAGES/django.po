@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 10:18+0600\n"
+"POT-Creation-Date: 2023-12-08 13:36+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgid "Социальное и экономическое развитие"
 msgstr "Социалдык жана экономикалык өнүгүү"
 
 #: .\templates\components\footer.html:21 .\templates\components\header.html:31
-#: .\templates\pages\index.html:15 .\templates\pages\news_list.html:6
+#: .\templates\pages\index.html:30 .\templates\pages\news_list.html:6
 msgid "Новости"
 msgstr "Жаңылыктар"
 
@@ -45,8 +45,8 @@ msgstr "Жаңылыктар"
 msgid "Объявления"
 msgstr "Жарыялоо"
 
-#: .\templates\components\footer.html:27 .\templates\components\header.html:33
-#: .\templates\pages\vacancy.html:4
+#: .\templates\components\footer.html:27 .\templates\components\header.html:40
+#: .\templates\pages\vacancy.html:6
 msgid "Вакансии"
 msgstr "Жумуш орундары"
 
@@ -96,10 +96,23 @@ msgstr "Документтин түрү"
 msgid "Отправить"
 msgstr "Жөнөтүү"
 
-#: .\templates\pages\index.html:16
+#: .\templates\pages\index.html:31
 msgid "Все новости →"
 msgstr "Бардык жаңылыктар"
 
 #: .\templates\pages\passport.html:6
 msgid "Паспорт"
 msgstr "Паспорт"
+
+#: .\templates\pages\search_results.html:9
+msgid "Поиск"
+msgstr "Издөө"
+
+#: .\templates\pages\search_results.html:16
+msgid "Результаты поиска по запросу:"
+msgstr "Сурам боюнча издөө натыйжалары:"
+
+#: .\templates\pages\search_results.html:46
+msgid "Вы ничего не написали в поиске"
+msgstr "Сиз издөөгө эч нерсе жазган жоксуз"
+

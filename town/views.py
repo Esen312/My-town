@@ -12,9 +12,19 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
-    news_list = News.objects.all().order_by('-date')
+    news_list = News.objects.all().order_by('-date')[:9]  # Выбираем первые 9 новостей
     mayor = Mayor.objects.first()
-    context = {'news_list': news_list[:9], 'mayor': mayor}  # Выберите первые 9 новостей
+    context = {'news_list': news_list, 'mayor': mayor}
+
+    current_language = request.LANGUAGE_CODE
+
+    # Если нет названия в соответствующем языке, установите заголовок на "Untitled"
+    for news in news_list:
+        if current_language == 'ky' and not news.title_ky:
+            news.title = 'Untitled'
+        elif current_language == 'ru' and not news.title_ru:
+            news.title = 'Untitled'
+
     return render(request, 'pages/index.html', context)
 
 
@@ -23,16 +33,13 @@ class NewsListView(ListView):
     template_name = 'pages/news_list.html'
     context_object_name = 'news_list'
     ordering = ['-date']
-    paginate_by = 2
+    paginate_by = 20
 
     def get_custom_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         paginator = Paginator(self.object_list, self.paginate_by)
         page = self.request.GET.get('page')
         current_language = self.request.LANGUAGE_CODE
-
-
-
 
         try:
             news_list = paginator.page(page)
