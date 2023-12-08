@@ -4,7 +4,7 @@ body {
 }
 
 .content {
-  margin: 0 110px;
+  margin: 0 300px;
 }
 .content {
   margin-bottom: 50px;
@@ -20,9 +20,8 @@ p {
   color: #007BFF;
   display: inline-block;
   font-size: 1.2rem;
+  text-underline: none;
 }
-
-
 
 .date {
   margin-left: 10px;
@@ -30,14 +29,29 @@ p {
   font-size: 0.8rem;
 }
 
+
+
 .result-item {
   border-bottom: 1px solid lightgray; /* Линия после каждой новости */
   padding-bottom: 1px; /* Дополнительный отступ после линии */
 }
 
+.result-item p a{
+  text-underline: none;
+  text-decoration: none;
+}
 
-@media (max-width: 768px) {
-  .content {
-    margin: 0 20px; /* Уменьшаем отступы для мобильных устройств */
-  }
+
+@media (max-width: 767px) {
+    .content {
+        margin: 0 20px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+    }
+
+    .content {
+        margin-top: 60px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+    }
+
+    .content {
+        margin-bottom: 30px;
+    }
 }
