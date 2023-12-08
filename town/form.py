@@ -123,3 +123,17 @@ class VacancyAdminForm(forms.ModelForm):
     class Meta:
         model = Vacancy
         fields = '__all__'
+
+class NewsFilterForm(forms.Form):
+    start_date = forms.DateField(label='Начальная дата', required=False, widget=forms.TextInput(attrs={'type': 'date'}))
+    end_date = forms.DateField(label='Конечная дата', required=False, widget=forms.TextInput(attrs={'type': 'date'}))
+
+
+class AnnouncementFilterForm(forms.Form):
+    start_date = forms.DateField(label='Начальная дата', required=False, widget=forms.TextInput(attrs={'type': 'date'}))
+    end_date = forms.DateField(label='Конечная дата', required=False, widget=forms.TextInput(attrs={'type': 'date'}))
+
+
+class OfficialDocumentsFilterForm(forms.Form):
+    start_date = forms.DateField(label='Начальная дата', required=False, widget=forms.TextInput(attrs={'type': 'date'}))
+    end_date = forms.DateField(label='Конечная дата', required=False, widget=forms.TextInput(attrs={'type': 'date'}))

@@ -48,10 +48,128 @@ a {
   color: #888;
 }
 
+.topic::after {
+  content: '';
+  display: block;
+  border-bottom: 1px solid lightgray; /* Линия после заголовка */
+  margin-top: 5px; /* Отступ между линией и заголовком */
+}
+
+.topic {
+  font-size: 2rem;
+}
+
+.current {
+  color: red;
+  font-weight: 600;
+}
+
+.filter-form {
+  margin-bottom: 20px;
+}
+
+.filter-form form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-form button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.filter-form button:hover {
+  background-color: #0056b3;
+}
+
+.filter-form button[type="button"] {
+  padding: 10px;
+  background-color: #ddd;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.filter-form button[type="button"]:hover {
+  background-color: #ccc;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.step-links a {
+  padding: 5px 8px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #007BFF;
+  border-radius: 4px;
+}
+
+.step-links .current {
+  background-color: #007BFF;
+  color: #fff;
+  border: 1px solid #007BFF;
+  padding: 5px 8px;
+  margin: 0 5px;
+  border-radius: 4px;
+}
+
+.step-links a:hover {
+  background-color: #0056b3;
+  color: #fff;
+  border: 1px solid #0056b3;
+}
 
 
 @media (max-width: 768px) {
   .content {
     margin: 0 20px; /* Уменьшаем отступы для мобильных устройств */
+  }
+
+  .content {
+    margin-top: 60px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+  }
+
+  .content {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin: 0 20px;
+  }
+
+  .content {
+    margin-top: 60px;
+  }
+
+  .content {
+    margin-bottom: 30px;
+  }
+
+  .filter-form form {
+    flex-direction: column;
+  }
+
+  .filter-form select,
+  .filter-form input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-form button,
+  .filter-form button[type="button"] {
+    width: 100%;
   }
 }

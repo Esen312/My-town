@@ -113,6 +113,10 @@ class Feedback(models.Model):
     attachment = models.FileField(upload_to='feedback_attachments/', null=True, blank=True)
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
 
+    class Meta:
+        verbose_name = 'Обратная связь'
+        verbose_name_plural = 'Обратные связи'
+
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.date}"
 
@@ -121,6 +125,10 @@ class Contact(models.Model):
     number = models.CharField(max_length=50, verbose_name='Номер контакта')
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
     text = models.TextField(verbose_name='Текст публикации', blank=True)
+
+    class Meta:
+        verbose_name = 'Контакты'
+        verbose_name_plural = 'Контакты'
 
     def __str__(self):
         return self.text
@@ -207,3 +215,18 @@ class Vacancy(models.Model):
 
     def __str__(self):
         return 'Вакансии'
+
+      
+class Mayor(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    first_name = models.CharField(verbose_name='Имя', max_length=50)
+    last_name = models.CharField(verbose_name='Фамилия', max_length=50)
+    middle_name = models.CharField(verbose_name='Отчество', max_length=50)
+    image = models.ImageField(verbose_name='Изображение', upload_to=upload_image)
+
+    class Meta:
+        verbose_name = 'Мэр города'
+        verbose_name_plural = 'Мэр города'
+
+    def __str__(self):
+        return self.title

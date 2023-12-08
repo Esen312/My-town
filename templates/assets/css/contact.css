@@ -4,7 +4,6 @@ body {
 }
 
 .content {
-
   margin: 0 300px; /* Отступы справа и слева */
 
 }
@@ -31,4 +30,20 @@ h1::after {
 
 .text {
   margin-left: 10px; /* Отступ слева для text */
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin: 0 20px; /* Уменьшаем отступы для мобильных устройств */
+  }
+
+  .content {
+    margin-top: 60px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+  }
+
+  .content {
+    margin-bottom: 30px;
+  }
+
+
 }

@@ -7,10 +7,25 @@
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 {% endblock %}
 
 {% block content %}
+    <div class="mayor-container">
+    <div class="mayor-card">
+      <img class="mayor-image" src="{{ mayor.image.url }}" alt="{{ mayor.title }}">
+      <div class="mayor-info">
+        <p class="mayor-title">{{ mayor.title }}</p>
+        <h2 class="mayor-name">{{ mayor.first_name }} {{ mayor.middle_name }} {{ mayor.last_name }}</h2>
+      </div>
+    </div>
+
+    <div class="mayor-buttons-container">
+  <a class="mayor-button" href="/contact/" target="_blank"><i class="fas fa-volume-control-phone"></i> Телефонный справочник</a>
+  <a class="mayor-button" href="/documents/"><i class="fas fa-file-pdf-o"></i> Отчеты</a>
+  <a class="mayor-button" href="#"><i class="fas fa-info"></i> Структура</a>
+    </div>
+  </div>
   <div class="main-news">
     <span class="main-news-left">{% trans 'Новости' %}</span>
     <span class="main-news-right"><a class="main-news-a" href="/news/">{% trans 'Все новости →' %}</a></span>
@@ -75,4 +90,5 @@
 {% block script %}
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'js/slider.js' %}"></script>
+
 {% endblock %}

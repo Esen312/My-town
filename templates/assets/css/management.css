@@ -77,6 +77,14 @@ ul {
     margin: 0 10px;
   }
 
+  .content {
+    margin-top: 60px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+  }
+
+  .content {
+    margin-bottom: 30px;
+  }
+
   .management {
     padding: 10px 0;
   }
