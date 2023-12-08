@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% load static %}
-<title>{% block title %}Контакты{% endblock %}</title>
+{% load i18n %}
+
+<title>{% block title %}{% trans 'Контакты' %}{% endblock %}</title>
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/contact.css' %}">
 {% endblock %}
 
 {% block content %}
-  <h1>Контакты</h1>
+  <h1>{% trans 'Контакты' %}</h1>
   {% for contact in contacts %}
     <p class="date">{{ contact.date }}</p>
     <p class="number">{{ contact.number }}<span class="text">{{ contact.text }}</span></p>

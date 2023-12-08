@@ -18,6 +18,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# DEBUG = False
+#
+# ALLOWED_HOSTS = ['your_domain.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -73,8 +76,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'my-town',
+        'USER': 'postgres',
+        'PASSWORD': 'islam2002',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

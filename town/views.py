@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.http import Http404
-from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown
+from .models import News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown, Vacancy
 from .form import FeedbackForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -92,6 +92,19 @@ class AnnouncementListView(ListView):
     context_object_name = 'announcements'
     ordering = ['-date']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_language = self.request.LANGUAGE_CODE
+
+        # Если нет названия в соответствующем, тогда запись не будет возвращена на страницу.
+        for announcement in context['announcements']:
+            if current_language == 'ky' and not announcement.title_ky:
+                announcement.title = 'Untitled'
+            elif current_language == 'ru' and not announcement.title_ru:
+                announcement.title = 'Untitled'
+
+        return context
+
 
 class AnnouncementDetailView(DetailView):
     model = Announcement
@@ -100,9 +113,13 @@ class AnnouncementDetailView(DetailView):
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
+        current_language = self.request.LANGUAGE_CODE
 
-        # Проверяем значение поля publicize
-        if not obj.publicize:
+        # Проверяем заголовок в соответствующем языке
+        if current_language == 'ky' and not obj.title_ky:
+            raise Http404("Страница не найдена")
+
+        if current_language == 'ru' and not obj.title_ru:
             raise Http404("Страница не найдена")
 
         return obj
@@ -167,3 +184,8 @@ def search_view(request):
 def passport_of_town(request):
     passport = PassportOfTown.objects.get(id=1)
     return render(request, 'pages/passport.html', {'passport': passport})
+
+
+def vacancy(request):
+    vacanc = Vacancy.objects.get(id=1)
+    return render(request, 'pages/vacancy.html', {'vacancy': vacanc})

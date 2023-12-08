@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}{% trans 'Главная страница' %}{% endblock %}
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -11,8 +12,8 @@
 
 {% block content %}
   <div class="main-news">
-    <span class="main-news-left">Новости</span>
-    <span class="main-news-right"><a class="main-news-a" href="/news/">Все новости →</a></span>
+    <span class="main-news-left">{% trans 'Новости' %}</span>
+    <span class="main-news-right"><a class="main-news-a" href="/news/">{% trans 'Все новости →' %}</a></span>
   </div>
   <div id="news-container">
     {% for news in news_list %}

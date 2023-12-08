@@ -12,7 +12,6 @@ class Announcement(models.Model):
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
     text = models.TextField(verbose_name='Текст публикации', blank=True, null=True)
     file = models.FileField(verbose_name='Файл', upload_to='media/', blank=True)
-    publicize = models.BooleanField(verbose_name='Опубликовать', default=False)
 
     def get_photos(self):
         return Photo.objects.filter(publication=self)
@@ -45,7 +44,6 @@ class OfficialDocuments(models.Model):
     date = models.DateField(verbose_name='Дата публикации', default=timezone.now)
     text = models.TextField(verbose_name='Текст публикации', blank=True, null=True)
     file = models.FileField(verbose_name='Файл', upload_to='media/', blank=True)
-    publicize = models.BooleanField(verbose_name='Опубликовать', default=False)
 
     def get_photos(self):
         return OfficialDocumentsPhoto.objects.filter(publication=self)
@@ -197,3 +195,15 @@ class PassportOfTown(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Vacancy(models.Model):
+    text = models.TextField(verbose_name='Текст публикации', blank=True, null=True)
+    file = models.FileField(verbose_name='Файл', upload_to='media/', blank=True)
+
+    class Meta:
+        verbose_name = 'Вакансии'
+        verbose_name_plural = 'Вакансии'
+
+    def __str__(self):
+        return 'Вакансии'

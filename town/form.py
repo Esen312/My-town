@@ -1,5 +1,5 @@
 from .models import News, Photo, Announcement, NewsPhoto, HistoryPhoto, History, OfficialDocuments, \
-    OfficialDocumentsPhoto, TownHallManagement, PassportOfTown
+    OfficialDocumentsPhoto, TownHallManagement, PassportOfTown, Vacancy
 from django.forms import ModelForm, inlineformset_factory
 from django import forms
 from .models import Feedback
@@ -113,4 +113,13 @@ class OfficialDocumentsAdminForm(forms.ModelForm):
 
     class Meta:
         model = OfficialDocuments
+        fields = '__all__'
+
+
+class VacancyAdminForm(forms.ModelForm):
+    text_ru = forms.CharField(label="Текст[ru]", widget=CKEditorUploadingWidget(), required=False)
+    text_ky = forms.CharField(label="Текст[ky]", widget=CKEditorUploadingWidget(), required=False)
+
+    class Meta:
+        model = Vacancy
         fields = '__all__'

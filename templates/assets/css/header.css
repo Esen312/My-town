@@ -194,7 +194,7 @@ body{
 }
 
 /* BREAKPOINTS */
-@media (max-width: 1200px) {
+@media (max-width: 1380px) {
     .header{
         padding: 1.3rem 5%;
     }

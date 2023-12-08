@@ -1,10 +1,11 @@
 body {
   margin: 0;
   padding: 0;
+
 }
 
 .announcement-item{
-    border-bottom: 1px solid lightgray; /* Линия после каждой новости */
+  border-bottom: 1px solid lightgray; /* Линия после каждой новости */
   padding-bottom: 1px; /* Дополнительный отступ после линии */
 }
 h3 {
@@ -22,7 +23,7 @@ a {
   font-size: 1.2rem;
 }
 .content {
-  margin: 0 110px;
+  margin: 0 300px;
 
 }
 .content {

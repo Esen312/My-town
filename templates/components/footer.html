@@ -1,32 +1,32 @@
 <!-- components/footer.html -->
+{% load i18n %}
 
 <footer class="footer">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
         <ul>
-          <li><a href="/">Главная страница</a></li>
-          <li><a href="/town_hall_managements/">Руководство мэрии</a></li>
+          <li><a href="/">{% trans 'Главная страница' %}</a></li>
+          <li><a href="/town_hall_managements/">{% trans 'Руководство мэрии' %}</a></li>
         </ul>
       </div>
       <div class="col-md-3">
         <ul>
-          <li><a href="/passport/">Паспорт города</a></li>
-          <li><a href="/documents/">Социальное и экономическое развитие</a></li>
+          <li><a href="/passport/">{% trans 'Паспорт города' %}</a></li>
+          <li><a href="/documents/">{% trans 'Социальное и экономическое развитие' %}</a></li>
         </ul>
       </div>
       <div class="col-md-3">
         <ul>
-          <li><a href="/news/">Новости</a></li>
-          <li><a href="/announcements/">Объявления</a></li>
-          <li><a href="/media/">Медиагалерея</a></li>
+          <li><a href="/news/">{% trans 'Новости' %}</a></li>
+          <li><a href="/announcements/">{% trans 'Объявления' %}</a></li>
         </ul>
       </div>
       <div class="col-md-3">
         <ul>
-          <li><a href="/jobs/">Вакансии</a></li>
-          <li><a href="/contact/">Контакты</a></li>
-          <li><a href="/map/">Карта города</a></li>
+          <li><a href="/jobs/">{% trans 'Вакансии' %}</a></li>
+          <li><a href="/contact/">{% trans 'Контакты' %}</a></li>
+          <li><a href="/map/">{% trans 'Карта города' %}</a></li>
         </ul>
       </div>
     </div>
@@ -49,10 +49,10 @@
     <div class="footer-text">
     <div class="footer-text-left">
 
-      <p>Сайт разработан Оморов.Э. и Исламов.И. Поддержанием сайта занимается МП "Мой город Токмок"</p>
+      <p>{% trans 'Сайт разработан Оморов Э. и Исламов И. Поддержанием сайта занимается МП "Мой город Токмок"' %}</p>
     </div>
     <div class="footer-text-right">
-      <p>03138 3-26-00, г. Токмок, улица Ленина, 385.</p>
+      <p> 03138 3-26-00, {% trans 'г. Токмок, улица Ленина, 385.'%}</p>
     </div>
   </div>
 </footer>

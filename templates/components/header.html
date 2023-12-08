@@ -10,7 +10,7 @@
     <header class="header">
         <a href="/" class="logo"><img class="logo-img" src="{% static '/favicon/logotip-tokmokpng.png' %}"
                                       alt="Логотип Токмока">
-            <span class="logo-text">Официальный сайт мэрии г. Токмок</span></a>
+            <span class="logo-text">{% trans 'Официальный сайт мэрии г. Токмок' %}</span></a>
         <input type="checkbox" id="check">
         <label for="check" class="icons">
             <i class='bx bx-menu' id="menu-icon"></i>
@@ -30,13 +30,14 @@
             </div>
             <a href="/news/" style="--i:1;">{% trans 'Новости'%}</a>
             <a href="/feedback/" style="--i:2;">{% trans 'Обратная связь'%}</a>
-{#            <a href="#" style="--i:2;">{% trans 'Вакансии'%}</a>#}
+
             <div class="dropdown" style="--i:3;">
                 <a href="#">{% trans 'О городе'%}<i class='bx bx-chevron-down'></i></a>
                 <div class="dropdown-content">
                     <a  href="/history/">{% trans 'История города'%}</a>
                     <a href="/town_hall_managements/">{% trans 'Руководство мэрии'%}</a>
                     <a href="/contact/">{% trans 'Контакты'%}</a>
+                    <a href="/vacancy/">{% trans 'Вакансии'%}</a>
                 </div>
             </div>
             <div class="dropdown" style="--i:4;">

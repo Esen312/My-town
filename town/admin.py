@@ -1,9 +1,9 @@
 from django.contrib import admin
 from town.form import (PhotoFormSet, HistoryPhotoFormSet, NewsPhotoFormSet, OfficialDocumentsFormSet,
                        AnnouncementAdminForm, HistoryAdminForm, TownHallManagementAdminForm, NewsAdminForm,
-                       PassportAdminForm, OfficialDocumentsAdminForm)
+                       PassportAdminForm, OfficialDocumentsAdminForm, VacancyAdminForm)
 from town.models import (Announcement, News, Feedback, Contact, OfficialDocuments, History, TownHallManagement, Photo,
-                         HistoryPhoto, NewsPhoto, PassportOfTown, OfficialDocumentsPhoto)
+                         HistoryPhoto, NewsPhoto, PassportOfTown, OfficialDocumentsPhoto, Vacancy)
 from modeltranslation.admin import TranslationAdmin
 from django.utils.html import format_html
 from django.contrib.admin import AdminSite
@@ -54,6 +54,10 @@ class PassportModelAdmin(TranslationAdmin):
     form = PassportAdminForm
 
 
+class VacancyModelAdmin(TranslationAdmin):
+    form = VacancyAdminForm
+
+
 class OfficialDocumentsPhotoInline(admin.TabularInline):
     model = OfficialDocumentsPhoto
     formset = OfficialDocumentsFormSet
@@ -67,7 +71,7 @@ class OfficialDocumentsPhotoInline(admin.TabularInline):
 
 @admin.register(Announcement)
 class AnnouncementAdmin(TranslationAdmin):
-    list_display = ('title', 'date', 'publicize')
+    list_display = ('title', 'date')
     search_fields = ['title']
     form = AnnouncementAdminForm
     inlines = [PhotoInline]
@@ -75,7 +79,7 @@ class AnnouncementAdmin(TranslationAdmin):
 
 @admin.register(OfficialDocuments)
 class OfficialDocumentsAdmin(TranslationAdmin):
-    list_display = ('title', 'date', 'publicize')
+    list_display = ('title', 'date')
     search_fields = ['title']
     inlines = [OfficialDocumentsPhotoInline]
     form = OfficialDocumentsAdminForm
@@ -104,3 +108,4 @@ admin.site.register(Feedback)
 admin.site.register(Contact)
 admin.site.register(History, HistoryModelAdmin)
 admin.site.register(PassportOfTown, PassportModelAdmin)
+admin.site.register(Vacancy, VacancyModelAdmin)

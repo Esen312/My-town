@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
-<title>{% block title %}Объявления{% endblock %}</title>
+<title>{% block title %}{{ news.title }}{% endblock %}</title>
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/announcement.css' %}">
 {% endblock %}
@@ -11,7 +12,7 @@
         <p>{{ announcement.date }}</p>
         <p>{{ announcement.text|safe }}</p>
         {% if announcement.file %}
-          <a href="{{ announcement.file.url }}" target="_blank">Документ</a>
+          <a href="{{ announcement.file.url }}" target="_blank">{% trans 'Документ' %}</a>
         {% endif %}
         {% if announcement.get_photos %}
           <div class="photo-container">

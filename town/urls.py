@@ -1,6 +1,6 @@
 from .views import (NewsListView, NewsDetailView, feedback, contact_view, AnnouncementListView, AnnouncementDetailView,
                     OfficialDocumentsListView, OfficialDocumentsDetailView, HistoryPage, TownHallManagementListView,
-                    search_view, index, passport_of_town)
+                    search_view, index, passport_of_town, vacancy)
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -19,6 +19,7 @@ urlpatterns = [
     path('history/', HistoryPage.as_view(), name='history'),
     path('town_hall_managements/', TownHallManagementListView.as_view(), name='town_hall_management_list'),
     path('passport/', passport_of_town, name='passport_of_town'),
+    path('vacancy/', vacancy, name='vacancy'),
     path('search/', search_view, name='search_view'),
 
 
