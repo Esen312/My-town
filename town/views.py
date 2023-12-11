@@ -33,7 +33,7 @@ class NewsListView(ListView):
     template_name = 'pages/news_list.html'
     context_object_name = 'news_list'
     ordering = ['-date']
-    paginate_by = 20
+    paginate_by = 2
 
     def get_custom_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -142,9 +142,6 @@ class AnnouncementListView(ListView):
     ordering = ['-date']
     paginate_by = 2  # Количество объявлений на одной странице
 
-    def get_queryset(self):
-        return Announcement.objects.filter(publicize=True)
-
     def get_custom_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         paginator = Paginator(self.object_list, self.paginate_by)
@@ -182,8 +179,8 @@ class AnnouncementListView(ListView):
         context['filter_form'] = AnnouncementFilterForm(self.request.GET)
         return context
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data_context(self, **kwargs):
+        context = super().get_context_data_context(**kwargs)
         current_language = self.request.LANGUAGE_CODE
 
         # Если нет названия в соответствующем, тогда запись не будет возвращена на страницу.
@@ -262,8 +259,8 @@ class OfficialDocumentsListView(ListView):
         context['filter_form'] = OfficialDocumentsFilterForm(self.request.GET)
         return context
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data_context(self, **kwargs):
+        context = super().get_context_data_context(**kwargs)
         current_language = self.request.LANGUAGE_CODE
 
         # Если нет названия в соответствующем, тогда запись не будет возвращена на страницу.
@@ -311,17 +308,32 @@ def search_view(request):
     query = request.GET.get('q')
 
     if query:
-        # Use '__iexact' for case-insensitive search
-        announcements = Announcement.objects.filter(
-            Q(title__iregex=rf'.*{query}.*'))
-        documents = OfficialDocuments.objects.filter(
-            Q(title__iregex=rf'.*{query}.*'))
-        news = News.objects.filter(title__iregex=rf'.*{query}.*')
+        announcements = Announcement.objects.filter(Q(title__icontains=query))
+        documents = OfficialDocuments.objects.filter(Q(title__icontains=query))
+        news = News.objects.filter(Q(title__icontains=query))
+
+        results = []
+        for announcement in announcements:
+            results.append({'model_name': 'announcement', 'object': announcement})
+        for document in documents:
+            results.append({'model_name': 'document', 'object': document})
+        for item in news:
+            results.append({'model_name': 'news', 'object': item})
+
+        paginator = Paginator(results, 2)  # 10 объектов на странице
+        page = request.GET.get('page')
+
+        try:
+            results = paginator.page(page)
+        except PageNotAnInteger:
+            # Если 'page' не является целым числом, передайте первую страницу
+            results = paginator.page(1)
+        except EmptyPage:
+            # Если 'page' находится за пределами допустимого диапазона, передайте последнюю страницу
+            results = paginator.page(paginator.num_pages)
 
         context = {
-            'announcements': announcements,
-            'documents': documents,
-            'news': news,
+            'results': results,
             'query': query,
         }
         return render(request, 'pages/search_results.html', context)

@@ -124,6 +124,7 @@ class VacancyAdminForm(forms.ModelForm):
         model = Vacancy
         fields = '__all__'
 
+
 class NewsFilterForm(forms.Form):
     start_date = forms.DateField(label='Начальная дата', required=False, widget=forms.TextInput(attrs={'type': 'date'}))
     end_date = forms.DateField(label='Конечная дата', required=False, widget=forms.TextInput(attrs={'type': 'date'}))
