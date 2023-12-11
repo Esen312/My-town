@@ -146,17 +146,32 @@ def search_view(request):
     query = request.GET.get('q')
 
     if query:
-        # Use '__iexact' for case-insensitive search
-        announcements = Announcement.objects.filter(
-            Q(title__iregex=rf'.*{query}.*'))
-        documents = OfficialDocuments.objects.filter(
-            Q(title__iregex=rf'.*{query}.*'))
-        news = News.objects.filter(title__iregex=rf'.*{query}.*')
+        announcements = Announcement.objects.filter(Q(title__icontains=query))
+        documents = OfficialDocuments.objects.filter(Q(title__icontains=query))
+        news = News.objects.filter(Q(title__icontains=query))
+
+        results = []
+        for announcement in announcements:
+            results.append({'model_name': 'announcement', 'object': announcement})
+        for document in documents:
+            results.append({'model_name': 'document', 'object': document})
+        for item in news:
+            results.append({'model_name': 'news', 'object': item})
+
+        paginator = Paginator(results, 2)  # 10 объектов на странице
+        page = request.GET.get('page')
+
+        try:
+            results = paginator.page(page)
+        except PageNotAnInteger:
+            # Если 'page' не является целым числом, передайте первую страницу
+            results = paginator.page(1)
+        except EmptyPage:
+            # Если 'page' находится за пределами допустимого диапазона, передайте последнюю страницу
+            results = paginator.page(paginator.num_pages)
 
         context = {
-            'announcements': announcements,
-            'documents': documents,
-            'news': news,
+            'results': results,
             'query': query,
         }
         return render(request, 'pages/search_results.html', context)

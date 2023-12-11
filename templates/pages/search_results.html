@@ -9,41 +9,60 @@
 {% block title %}{% trans 'Поиск' %}{% endblock %}
 
 {% block content %}
+  <body>
 
-<body>
+{% if query %}
+    <h3>{% trans 'Результаты поиска по запросу:' %} {{ query }}</h3>
 
-    {% if query %}
-        <h3>{% trans 'Результаты поиска по запросу:' %} {{ query }}</h3>
-        {% if announcements %}
-            {% for announcement in announcements %}
-                <div class="result-item">
-                    <p><a href="{% url 'announcement_detail' pk=announcement.pk %}">{{ announcement.title }}</a></p>
-                    <span  class="date">{{ announcement.date }}</span>
-                </div>
-            {% endfor %}
-        {% endif %}
+{% if results %}
+    {% for result in results %}
+        <div class="result-item">
+            {% if result.model_name == 'announcement' %}
+                <p><a href="{% url 'announcement_detail' pk=result.object.pk %}">{{ result.object.title }}</a></p>
+                <span class="date">{{ result.object.date }}</span>
+            {% elif result.model_name == 'document' %}
+                <p><a href="{% url 'documents_detail' pk=result.object.pk %}">{{ result.object.title }}</a></p>
+                <span class="date">{{ result.object.date }}</span>
+            {% elif result.model_name == 'news' %}
+                <p><a href="{% url 'news_detail' pk=result.object.pk %}">{{ result.object.title }}</a></p>
+                <span class="date">{{ result.object.date }}</span>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>{% trans 'Нет результатов для вашего запроса.' %}</p>
+{% endif %}
 
-        {% if documents %}
-            {% for document in documents %}
-                <div class="result-item">
-                    <p>{{ document.title }}</p>
-                    <span  class="date">{{ document.date }}</span>
-                </div>
-            {% endfor %}
-        {% endif %}
 
-        {% if news %}
-            {% for item in news %}
-                <div class="result-item">
-                    <p><a href="{% url 'news_detail' pk=item.pk %}">{{ item.title }}</a></p>
-                    <span class="date">{{ item.date }}</span>
-                </div>
-            {% endfor %}
-        {% endif %}
+    {% if results.has_other_pages %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if results.has_previous %}
+                    <a href="?q={{ query }}&page={{ results.previous_page_number }}">предыдущая</a>
+                {% endif %}
 
+                {% for i in results.paginator.page_range %}
+                    {% if results.number == i %}
+                        <span class="current">{{ i }}</span>
+                    {% elif i > results.number|add:"-2" and i < results.number|add:"2" %}
+                        <a href="?q={{ query }}&page={{ i }}">{{ i }}</a>
+                    {% elif i == results.number|add:"-2" %}
+                        <a href="?q={{ query }}&page=1">1</a>
+                        <span class="dots">...</span>
+                    {% elif i == results.number|add:"2" %}
+                        <span class="dots">...</span>
+                        <a href="?q={{ query }}&page={{ results.paginator.num_pages }}">{{ results.paginator.num_pages }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if results.has_next %}
+                    <a href="?q={{ query }}&page={{ results.next_page_number }}">следующая</a>
+                {% endif %}
+            </span>
+        </div>
     {% endif %}
-    {% if not query %}
-        <h3>{% trans 'Вы ничего не написали в поиске' %}</h3>
-    {% endif %}
-</body>
+{% else %}
+    <h3>{% trans 'Вы ничего не написали в поиске' %}</h3>
+{% endif %}
+  </body>
 {% endblock %}

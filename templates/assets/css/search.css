@@ -12,6 +12,8 @@ body {
 
 h3 {
   margin-top: 20px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
 }
 
 p {
@@ -21,6 +23,7 @@ p {
   display: inline-block;
   font-size: 1.2rem;
   text-underline: none;
+  font-weight: 500;
 }
 
 .date {
@@ -41,6 +44,42 @@ p {
   text-decoration: none;
 }
 
+
+a {
+  text-decoration: none;
+  color: #007BFF;
+  display: inline-block;
+  font-size: 1.2rem;
+
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.step-links a {
+  padding: 5px 8px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #007BFF;
+  border-radius: 4px;
+}
+
+.step-links .current {
+  background-color: #007BFF;
+  color: #fff;
+  border: 1px solid #007BFF;
+  padding: 5px 8px;
+  margin: 0 5px;
+  border-radius: 4px;
+}
+
+.step-links a:hover {
+  background-color: #0056b3;
+  color: #fff;
+  border: 1px solid #0056b3;
+}
 
 @media (max-width: 767px) {
     .content {
