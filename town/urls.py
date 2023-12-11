@@ -1,8 +1,6 @@
 from .views import (NewsListView, NewsDetailView, feedback, contact_view, AnnouncementListView, AnnouncementDetailView,
                     OfficialDocumentsListView, OfficialDocumentsDetailView, HistoryPage, TownHallManagementListView,
                     search_view, index, passport_of_town, vacancy, MapView)
-
-
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
