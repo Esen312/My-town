@@ -38,7 +38,11 @@ class FilteredListView(ListView):
         context = super().get_context_data(**kwargs)
         current_language = self.request.LANGUAGE_CODE
         context['filter_form'] = self.filter_form_class(self.request.GET)
-        paginator = Paginator(self.object_list, self.paginate_by)
+
+        # Фильтрация объектов по языку
+        filtered_objects = [obj for obj in self.object_list if getattr(obj, f'title_{current_language}', None)]
+
+        paginator = Paginator(filtered_objects, self.paginate_by)
         page = self.request.GET.get('page')
 
         try:
@@ -51,9 +55,9 @@ class FilteredListView(ListView):
         context[self.context_object_name] = paginated_objects
 
         for obj in context[self.context_object_name]:
-            if current_language == 'ky' and not getattr(obj, f'title_ky', None):
-                obj.title = 'Untitled'
-            elif current_language == 'ru' and not getattr(obj, f'title_ru', None):
+            # Проверка наличия языковых версий заголовков и установка заголовка "Untitled", если требуемая версия отсутствует
+            title_attr = f'title_{current_language}'
+            if not hasattr(obj, title_attr) or getattr(obj, title_attr) is None:
                 obj.title = 'Untitled'
 
         return context

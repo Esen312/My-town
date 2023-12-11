@@ -11,9 +11,7 @@
 
 {% block content %}
     <div class="passport">
-    <span class="">{{ vacancy.text|safe }}</span>
-        <iframe  src="{{ vacancy.file }}" width="600" height="800" frameborder="0"></iframe>
-    <p>{{ vacancy.file }}</p>
-
+        <span class="">{{ vacancy.text|safe }}</span>
+        <iframe class="vac-iframe" src="{{ vacancy.file }}" width="" height="auto" frameborder="0"></iframe>
     </div>
 {% endblock %}
