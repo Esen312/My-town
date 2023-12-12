@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-08 13:36+0600\n"
+"POT-Creation-Date: 2023-12-12 11:53+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgid "Социальное и экономическое развитие"
 msgstr "Социалдык жана экономикалык өнүгүү"
 
 #: .\templates\components\footer.html:21 .\templates\components\header.html:31
-#: .\templates\pages\index.html:30 .\templates\pages\news_list.html:6
+#: .\templates\pages\index.html:32 .\templates\pages\news_list.html:6
 msgid "Новости"
 msgstr "Жаңылыктар"
 
@@ -96,7 +96,19 @@ msgstr "Документтин түрү"
 msgid "Отправить"
 msgstr "Жөнөтүү"
 
-#: .\templates\pages\index.html:31
+#: .\templates\pages\index.html:25
+msgid "Телефонный справочник"
+msgstr "Телефон маалымдамасы"
+
+#: .\templates\pages\index.html:26
+msgid "Отчеты"
+msgstr "Отчеттор"
+
+#: .\templates\pages\index.html:28
+msgid "Структура"
+msgstr "Структурасы"
+
+#: .\templates\pages\index.html:33
 msgid "Все новости →"
 msgstr "Бардык жаңылыктар"
 
@@ -108,11 +120,108 @@ msgstr "Паспорт"
 msgid "Поиск"
 msgstr "Издөө"
 
-#: .\templates\pages\search_results.html:16
+#: .\templates\pages\search_results.html:15
 msgid "Результаты поиска по запросу:"
 msgstr "Сурам боюнча издөө натыйжалары:"
 
-#: .\templates\pages\search_results.html:46
+#: .\templates\pages\search_results.html:33
+#, fuzzy
+#| msgid "Результаты поиска по запросу:"
+msgid "Нет результатов для вашего запроса."
+msgstr "Сурам боюнча издөө натыйжалары:"
+
+#: .\templates\pages\search_results.html:65
 msgid "Вы ничего не написали в поиске"
 msgstr "Сиз издөөгө эч нерсе жазган жоксуз"
 
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:5
+msgid "Select an image to embed"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:27
+msgid "Browse for the image you want, then click 'Embed Image' to continue..."
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:29
+msgid ""
+"No images found. Upload images using the 'Image Button' dialog's 'Upload' "
+"tab."
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:50
+msgid "Images in: "
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:62
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:80
+msgid "Embed Image"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:146
+msgid "Play Slideshow"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:147
+msgid "Pause Slideshow"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:148
+msgid "&lsaquo; Previous Photo"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:149
+msgid "Next Photo &rsaquo;"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:150
+msgid "Next &rsaquo;"
+msgstr ""
+
+#: .\venv\Lib\site-packages\ckeditor_uploader\templates\ckeditor\browse.html:151
+msgid "&lsaquo; Prev"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:220
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:206
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:221
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
+"\">DEBUG=True</a> is in your settings file and you have not configured any "
+"URLs."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:229
+msgid "Django Documentation"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:230
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:238
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:239
+msgid "Get started with Django"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:247
+msgid "Django Community"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:248
+msgid "Connect, get help, or contribute"
+msgstr ""
