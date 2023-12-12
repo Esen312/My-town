@@ -26,7 +26,14 @@ class FeedbackForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['attachment'].widget.attrs.update({'accept': 'application/pdf, image/*'})
+        self.fields['attachment'].widget.attrs.update({
+            'accept': 'application/pdf, '
+                      'application/msword, '
+                      'application/vnd.openxmlformats-officedocument.wordprocessingml.document, '
+                      'application/vnd.ms-powerpoint, '
+                      'application/vnd.openxmlformats-officedocument.presentationml.presentation, '
+                      'image/*, video/*, audio/*'
+        })
 
 
 class PhotoForm(forms.ModelForm):

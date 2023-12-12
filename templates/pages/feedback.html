@@ -28,3 +28,18 @@
   </form>
     </div>
 {% endblock %}
+
+{% block script %}
+ <script>
+  function updateFileName() {
+    var input = document.getElementById('file-input');
+    var fileNameDisplay = document.getElementById('file-name');
+
+    if (input.files.length > 0) {
+      fileNameDisplay.textContent = input.files[0].name;
+    } else {
+      fileNameDisplay.textContent = 'Выберите файл';
+    }
+  }
+</script>
+{% endblock %}

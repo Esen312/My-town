@@ -1,3 +1,5 @@
+import PyPDF2
+import moviepy.editor as mp
 from django.db.models import Q
 from django.http import Http404
 from .models import (News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown,
@@ -9,6 +11,9 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from PIL import Image
+from io import BytesIO
+from docx import Document
 
 
 class FilteredListView(ListView):
@@ -197,26 +202,103 @@ class MapView(TemplateView):
     template_name = 'pages/map.html'
 
 
+def process_audio(file):
+    # Ваш код обработки аудио, например, изменение формата или кодека
+    # Здесь предполагается, что вы используете библиотеку moviepy для обработки аудио
+    audio = mp.AudioFileClip(file)
+    # В этом примере код сохраняет аудио в формате MP3
+    processed_file = BytesIO()
+    audio.write_audiofile(processed_file, codec='mp3')
+    processed_file.seek(0)
+    return processed_file
+
+
+def process_docx(file):
+    doc = Document(file)
+    # Произведите необходимые операции с документом
+    # Например, извлечение текста, замена текста и т. д.
+
+    # Создаем объект BytesIO и записываем в него обработанный DOCX
+    output = BytesIO()
+    doc.save(output)
+    output.seek(0)
+
+    return output
+
+
+def process_image(file):
+    img = Image.open(file)
+    img.thumbnail((1920, 1080))
+
+    # Замените на необходимые операции с изображением
+
+    # Возвращаем обработанное изображение в виде BytesIO объекта
+    output = BytesIO()
+    img.save(output, format='JPEG')
+    output.seek(0)
+
+    return output
+
+
+def process_pdf(file):
+    # Открываем PDF файл
+    pdf_reader = PyPDF2.PdfReader(file)
+
+    # Создаем новый объект PDFWriter
+    pdf_writer = PyPDF2.PdfWriter()
+
+    # Обрабатываем каждую страницу
+    for page_num in range(len(pdf_reader.pages)):
+        page = pdf_reader.pages[page_num]
+
+        # Добавляем страницу в новый PDF
+        pdf_writer.add_page(page)
+
+    # Создаем объект BytesIO и записываем в него новый PDF
+    output = BytesIO()
+    pdf_writer.write(output)
+    output.seek(0)
+
+    return output
+
+
 def feedback(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST, request.FILES)
         if form.is_valid():
-
             feedback_instance = form.save()
+
+            email = EmailMessage()
+
+            # Предварительная обработка файлов перед отправкой
+            for file in request.FILES.getlist('attachment'):
+                if file.content_type.startswith('image'):
+                    processed_file = process_image(file)
+                    email.attach(file.name, processed_file.read(), 'image/jpeg')
+                elif file.content_type == 'application/pdf':
+                    processed_file = process_pdf(file)
+                    email.attach(file.name, processed_file.read(), 'application/pdf')
+
+                elif file.content_type == 'audio/mp3':
+                    processed_file = process_audio(file)
+                    email.attach(file.name, processed_file.read(), 'audio/mp3')
+
+                elif file.content_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+                    processed_file = process_docx(file)
+                    email.attach(file.name, processed_file.read(), 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+                else:
+                    email.attach(file.name, file.read(), file.content_type)
 
             # Отправка уведомления на почту
             subject = 'Новый отзыв'
-            message = render_to_string('email_templates/new_feedback_email.txt',
-                                       {'feedback_instance': feedback_instance})
+            message = render_to_string('email_templates/new_feedback_email.txt', {'feedback_instance': feedback_instance})
             from_email = 'esentur32@gmail.com'  # Замените на свою почту
             recipient_list = ['esentur32@gmail.com']  # Замените на свою почту
 
-            email = EmailMessage(subject, message, from_email, recipient_list)
-
-            # Если есть прикрепленные файлы
-            for file in request.FILES.getlist('attachment'):
-                email.attach(file.name, file.read(), file.content_type)
-
+            email.subject = subject
+            email.body = message
+            email.from_email = from_email
+            email.to = recipient_list
             email.send()
 
             messages.success(request, 'Ваш отзыв успешно отправлен. Спасибо!')
@@ -225,7 +307,6 @@ def feedback(request):
         form = FeedbackForm()
 
     return render(request, 'pages/feedback.html', {'form': form})
-
 
 def contact_view(request):
     contacts = Contact.objects.all()

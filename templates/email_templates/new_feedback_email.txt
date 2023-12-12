@@ -7,6 +7,9 @@ Email: {{ feedback_instance.email }}
 Сообщение: {{ feedback_instance.message }}
 Дата: {{ feedback_instance.date }}
 
-
-
-
+{% if feedback_instance.attachment %}
+Вложенные файлы:
+{% for file in feedback_instance.attachment.all %}
+    - {{ file.name }}
+{% endfor %}
+{% endif %}
