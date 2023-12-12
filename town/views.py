@@ -1,8 +1,7 @@
 import PyPDF2
+import moviepy.editor as mp
 from django.db.models import Q
 from django.http import Http404
-from pydub import AudioSegment
-
 from .models import (News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown,
                      Vacancy, Mayor)
 from .form import FeedbackForm, NewsFilterForm, AnnouncementFilterForm, OfficialDocumentsFilterForm
@@ -199,6 +198,17 @@ class MapView(TemplateView):
     template_name = 'pages/map.html'
 
 
+def process_audio(file):
+    # Ваш код обработки аудио, например, изменение формата или кодека
+    # Здесь предполагается, что вы используете библиотеку moviepy для обработки аудио
+    audio = mp.AudioFileClip(file)
+    # В этом примере код сохраняет аудио в формате MP3
+    processed_file = BytesIO()
+    audio.write_audiofile(processed_file, codec='mp3')
+    processed_file.seek(0)
+    return processed_file
+
+
 def process_docx(file):
     doc = Document(file)
     # Произведите необходимые операции с документом
@@ -212,22 +222,9 @@ def process_docx(file):
     return output
 
 
-def process_mp3(file):
-    audio = AudioSegment.from_mp3(file)
-    # Произведите необходимые операции с аудио
-    # Например, изменение громкости, нарезка и т. д.
-
-    # Создаем объект BytesIO и записываем в него обработанный аудиофайл
-    output = BytesIO()
-    audio.export(output, format='mp3')
-    output.seek(0)
-
-    return output
-
-
 def process_image(file):
     img = Image.open(file)
-    img.thumbnail((1200, 720))
+    img.thumbnail((1920, 1080))
 
     # Замените на необходимые операции с изображением
 
@@ -279,8 +276,9 @@ def feedback(request):
                     email.attach(file.name, processed_file.read(), 'application/pdf')
 
                 elif file.content_type == 'audio/mp3':
-                    processed_file = process_mp3(file)
+                    processed_file = process_audio(file)
                     email.attach(file.name, processed_file.read(), 'audio/mp3')
+
                 elif file.content_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
                     processed_file = process_docx(file)
                     email.attach(file.name, processed_file.read(), 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
