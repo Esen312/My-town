@@ -278,11 +278,9 @@ def feedback(request):
                 elif file.content_type == 'application/pdf':
                     processed_file = process_pdf(file)
                     email.attach(file.name, processed_file.read(), 'application/pdf')
-
                 elif file.content_type == 'audio/mp3':
                     processed_file = process_audio(file)
                     email.attach(file.name, processed_file.read(), 'audio/mp3')
-
                 elif file.content_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
                     processed_file = process_docx(file)
                     email.attach(file.name, processed_file.read(), 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
@@ -290,10 +288,10 @@ def feedback(request):
                     email.attach(file.name, file.read(), file.content_type)
 
             # Отправка уведомления на почту
-            subject = 'Новое Сообщение'
+            subject = 'Новое сообщение'
             message = render_to_string('email_templates/new_feedback_email.txt', {'feedback_instance': feedback_instance})
-            from_email = 'olim.olim.1994@mail.ru'  # Замените на свою почту
-            recipient_list = ['olim.olim.1994@mail.ru']  # Замените на свою почту
+            from_email = f'{feedback_instance.first_name} {feedback_instance.last_name} <olim.olim.1994@mail.ru>'
+            recipient_list = ['olim.olim.1994@mail.ru']
 
             email.subject = subject
             email.body = message
@@ -301,8 +299,7 @@ def feedback(request):
             email.to = recipient_list
             email.send()
 
-
-            messages.success(request, 'Ваше сообщение успешно отправлен. Спасибо!')
+            messages.success(request, 'Ваш отзыв успешно отправлен. Спасибо!')
             return redirect('feedback')
     else:
         form = FeedbackForm()
