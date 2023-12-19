@@ -155,6 +155,7 @@ a {
   display: flex;
   justify-content: space-between;  /* Добавляем выравнивание по краям контейнера */
   margin-bottom: 30px;
+  margin-left: 50px;
 }
 
 .mayor-card {

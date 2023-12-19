@@ -59,11 +59,6 @@ a {
   font-size: 2rem;
 }
 
-.current {
-  color: red;
-  font-weight: 600;
-}
-
 .filter-form {
   margin-bottom: 20px;
 }

@@ -290,10 +290,10 @@ def feedback(request):
                     email.attach(file.name, file.read(), file.content_type)
 
             # Отправка уведомления на почту
-            subject = 'Новый отзыв'
+            subject = 'Новое сообщение'
             message = render_to_string('email_templates/new_feedback_email.txt', {'feedback_instance': feedback_instance})
-            from_email = 'esentur32@gmail.com'  # Замените на свою почту
-            recipient_list = ['esentur32@gmail.com']  # Замените на свою почту
+            from_email = 'islamovislam425@gmail.com'  # Замените на свою почту
+            recipient_list = ['islamovislam425@gmail.com']  # Замените на свою почту
 
             email.subject = subject
             email.body = message

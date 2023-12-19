@@ -20,15 +20,19 @@
 </div>
 
 <div class="main">
-  {% for article in news_list %}
-      {% if article.title != 'Untitled' %}
-        <div class="news-item">
-          <p class="news-title"><a href="{% url 'news_detail' pk=article.pk %}">{{ article.title }}</a><span class="date">{{ article.date }}</span></p>
-          <p>{{ article.content }}</p>
-        </div>
-      {% endif %}
-  {% endfor %}
-</div>
+    {% if news_list %}
+      {% for article in news_list %}
+        {% if article.title != 'Untitled' %}
+          <div class="news-item">
+            <p class="news-title"><a href="{% url 'news_detail' pk=article.pk %}">{{ article.title }}</a><span class="date">{{ article.date }}</span></p>
+            <p>{{ article.content }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <p>Нет результатов для вашего запроса.</p>
+    {% endif %}
+  </div>
 
 <div class="pagination">
   <span class="step-links">

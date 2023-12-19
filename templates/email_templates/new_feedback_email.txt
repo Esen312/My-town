@@ -1,4 +1,4 @@
-Новый отзыв
+Новое сообщение
 
 Имя: {{ feedback_instance.first_name }}
 Фамилия: {{ feedback_instance.last_name }}

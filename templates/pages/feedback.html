@@ -22,24 +22,16 @@
 
     {% csrf_token %}
 
-    {{ form.as_p }}
+    {{ form.first_name }}
+    {{ form.last_name }}
+    {{ form.contact_number }}
+    {{ form.email }}
+    {{ form.message }}
+
+    {# Добавляем атрибут multiple в поле для загрузки файлов #}
+    <input type="file" name="attachment" multiple>
 
     <button type="submit">{% trans 'Отправить' %}</button>
   </form>
-    </div>
-{% endblock %}
-
-{% block script %}
- <script>
-  function updateFileName() {
-    var input = document.getElementById('file-input');
-    var fileNameDisplay = document.getElementById('file-name');
-
-    if (input.files.length > 0) {
-      fileNameDisplay.textContent = input.files[0].name;
-    } else {
-      fileNameDisplay.textContent = 'Выберите файл';
-    }
-  }
-</script>
+</div>
 {% endblock %}

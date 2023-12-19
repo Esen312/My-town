@@ -19,14 +19,20 @@
   </form>
 </div>
 
+    <div class="main">
+  {% if announcements %}
     {% for announcement in announcements %}
-        {% if announcement.title != 'Untitled' %}
-            <div class="announcement-item">
-                <h3><a href="{% url 'announcement_detail' pk=announcement.pk %}">{{ announcement.title }}</a>
-                    <span class="date">{{ announcement.date }}</span></h3>
-            </div>
-        {% endif %}
+      {% if announcement.title != 'Untitled' %}
+        <div class="announcement-item">
+          <h3><a href="{% url 'announcement_detail' pk=announcement.pk %}">{{ announcement.title }}</a>
+            <span class="date">{{ announcement.date }}</span></h3>
+        </div>
+      {% endif %}
     {% endfor %}
+  {% else %}
+    <p>Нет объявлений для вашего запроса.</p>
+  {% endif %}
+</div>
 
     <div class="pagination">
         <span class="step-links">
