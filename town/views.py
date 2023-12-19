@@ -3,7 +3,7 @@ import moviepy.editor as mp
 from django.db.models import Q
 from django.http import Http404
 from .models import (News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown,
-                     Vacancy, Mayor)
+                     Vacancy, Mayor, Feedback)
 from .form import FeedbackForm, NewsFilterForm, AnnouncementFilterForm, OfficialDocumentsFilterForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -290,10 +290,10 @@ def feedback(request):
                     email.attach(file.name, file.read(), file.content_type)
 
             # Отправка уведомления на почту
-            subject = 'Новое сообщение'
+            subject = 'Новое Сообщение'
             message = render_to_string('email_templates/new_feedback_email.txt', {'feedback_instance': feedback_instance})
-            from_email = 'islamovislam425@gmail.com'  # Замените на свою почту
-            recipient_list = ['islamovislam425@gmail.com']  # Замените на свою почту
+            from_email = 'olim.olim.1994@mail.ru'  # Замените на свою почту
+            recipient_list = ['olim.olim.1994@mail.ru']  # Замените на свою почту
 
             email.subject = subject
             email.body = message
@@ -301,7 +301,8 @@ def feedback(request):
             email.to = recipient_list
             email.send()
 
-            messages.success(request, 'Ваш отзыв успешно отправлен. Спасибо!')
+
+            messages.success(request, 'Ваше сообщение успешно отправлен. Спасибо!')
             return redirect('feedback')
     else:
         form = FeedbackForm()
@@ -311,3 +312,4 @@ def feedback(request):
 def contact_view(request):
     contacts = Contact.objects.all()
     return render(request, 'pages/contact.html', {'contacts': contacts})
+
