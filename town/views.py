@@ -3,7 +3,7 @@ import moviepy.editor as mp
 from django.db.models import Q
 from django.http import Http404
 from .models import (News, Contact, Announcement, OfficialDocuments, History, TownHallManagement, PassportOfTown,
-                     Vacancy, Mayor)
+                     Vacancy, Mayor, Feedback)
 from .form import FeedbackForm, NewsFilterForm, AnnouncementFilterForm, OfficialDocumentsFilterForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -278,11 +278,9 @@ def feedback(request):
                 elif file.content_type == 'application/pdf':
                     processed_file = process_pdf(file)
                     email.attach(file.name, processed_file.read(), 'application/pdf')
-
                 elif file.content_type == 'audio/mp3':
                     processed_file = process_audio(file)
                     email.attach(file.name, processed_file.read(), 'audio/mp3')
-
                 elif file.content_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
                     processed_file = process_docx(file)
                     email.attach(file.name, processed_file.read(), 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
@@ -292,8 +290,8 @@ def feedback(request):
             # Отправка уведомления на почту
             subject = 'Новое сообщение'
             message = render_to_string('email_templates/new_feedback_email.txt', {'feedback_instance': feedback_instance})
-            from_email = 'islamovislam425@gmail.com'  # Замените на свою почту
-            recipient_list = ['islamovislam425@gmail.com']  # Замените на свою почту
+            from_email = f'{feedback_instance.first_name} {feedback_instance.last_name} <olim.olim.1994@mail.ru>'
+            recipient_list = ['olim.olim.1994@mail.ru']
 
             email.subject = subject
             email.body = message
@@ -311,3 +309,4 @@ def feedback(request):
 def contact_view(request):
     contacts = Contact.objects.all()
     return render(request, 'pages/contact.html', {'contacts': contacts})
+
