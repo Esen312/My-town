@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-12 11:53+0600\n"
+"POT-Creation-Date: 2023-12-20 01:48+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgid "Социальное и экономическое развитие"
 msgstr "Социалдык жана экономикалык өнүгүү"
 
 #: .\templates\components\footer.html:21 .\templates\components\header.html:31
-#: .\templates\pages\index.html:32 .\templates\pages\news_list.html:6
+#: .\templates\pages\index.html:33 .\templates\pages\news_list.html:6
 msgid "Новости"
 msgstr "Жаңылыктар"
 
@@ -92,23 +92,23 @@ msgstr "Шаардын тарыхы"
 msgid "Документ"
 msgstr "Документтин түрү"
 
-#: .\templates\pages\feedback.html:27
+#: .\templates\pages\feedback.html:34
 msgid "Отправить"
 msgstr "Жөнөтүү"
 
-#: .\templates\pages\index.html:25
+#: .\templates\pages\index.html:26
 msgid "Телефонный справочник"
 msgstr "Телефон маалымдамасы"
 
-#: .\templates\pages\index.html:26
+#: .\templates\pages\index.html:27
 msgid "Отчеты"
 msgstr "Отчеттор"
 
-#: .\templates\pages\index.html:28
+#: .\templates\pages\index.html:29
 msgid "Структура"
 msgstr "Структурасы"
 
-#: .\templates\pages\index.html:33
+#: .\templates\pages\index.html:34
 msgid "Все новости →"
 msgstr "Бардык жаңылыктар"
 
