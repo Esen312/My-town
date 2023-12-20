@@ -147,3 +147,16 @@ a {
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .step-links {
+    text-align: center;
+    margin-top: 10px; /* Уменьшаем отступы для мобильных устройств */
+  }
+
+  .step-links a,
+  .step-links .current {
+    margin: 0 3px;
+    margin-bottom: 10px;
+  }
+}
