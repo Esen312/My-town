@@ -264,10 +264,23 @@ a {
 }
 
 @media screen and (max-width: 480px) {
+
+
   .content {
     margin: 0 20px;
     margin-top: 60px;
     margin-bottom: 30px;
+  }
+
+  #news-container {
+    flex-direction: column;
+  }
+
+  .news-item {
+    margin: 0 45px;
+    width: 100%;
+    flex: 0 1 100%; /* 100% ширины для мобильных устройств */
+
   }
 
   .mayor-card {

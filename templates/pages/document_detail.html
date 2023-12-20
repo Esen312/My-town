@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-        <h3>{{ official_document.title }}</h3>
+        <p class="topic">{{ official_document.title }}</p>
         <p>{{ official_document.date }}</p>
         <p>{{ official_document.text|safe }}</p>
         {% if official_document.file %}

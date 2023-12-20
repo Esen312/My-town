@@ -55,3 +55,42 @@
     margin-bottom: 30px;
   }
 }
+
+@media (max-width: 768px) {
+  .content {
+    margin: 0 20px;
+    /* Пример, можете изменить значение в зависимости от ваших предпочтений */
+  }
+
+  .content {
+    margin-top: 60px; /* Уменьшаем отступы справа и слева для маленьких экранов */
+  }
+
+  .content {
+    margin-bottom: 30px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .date {
+    font-size: 0.7rem;
+  }
+
+  .text {
+    font-size: 0.9rem;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 40px;
+  }
+
+  .photo-item {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+}
