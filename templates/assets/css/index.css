@@ -239,7 +239,7 @@ a {
   .content {
     margin: 0 20px;
     margin-top: 60px;
-    margin-bottom: 130px;
+    margin-bottom: 30px;
   }
 
   .news-item {
@@ -264,8 +264,6 @@ a {
 }
 
 @media screen and (max-width: 480px) {
-
-
   .content {
     margin: 0 20px;
     margin-top: 60px;
@@ -278,10 +276,13 @@ a {
 
   .news-item {
     margin: 0 45px;
-    width: 100%;
-    flex: 0 1 100%; /* 100% ширины для мобильных устройств */
 
   }
+
+  .slider-item {
+    flex: 0 0 calc(30% - 20px);
+  }
+
 
   .mayor-card {
     width: 100%;
