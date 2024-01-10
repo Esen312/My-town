@@ -7,8 +7,6 @@
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 {% endblock %}
 
 {% block content %}
@@ -23,12 +21,21 @@
 
     <div class="mayor-buttons-container">
   <a class="mayor-button" href="{% static 'files/spravochmik.pdf' %}" target="_blank">
-      <i class="fas fa-volume-control-phone"></i>{% trans 'Телефонный справочник' %}</a>
-  <a class="mayor-button" href="/documents/"><i class="fas fa-file-pdf-o"></i>{% trans 'Отчеты' %}</a>
-  <a class="mayor-button" target="_blank" href="{% static 'files/structura-merii.pdf' %}"><i class="fas fa-info"></i>
+      <i class="fa fa-volume-control-phone"></i>{% trans 'Телефонный справочник' %}</a>
+  <a class="mayor-button" href="/documents/"><i class="fa fa-file-pdf-o"></i>{% trans 'Отчеты' %}</a>
+  <a class="mayor-button" target="_blank" href="{% static 'files/structura-merii.pdf' %}"><i class="fa fa-info"></i>
       {% trans 'Структура' %}</a>
     </div>
   </div>
+
+    <div class="youtube-video-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/66cKM8XxeRc?si=-wwsDK4-HKejgpHd"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+      </iframe>
+    </div>
+
   <div class="main-news">
     <span class="main-news-left">{% trans 'Новости' %}</span>
     <span class="main-news-right"><a class="main-news-a" href="/news/">{% trans 'Все новости →' %}</a></span>
